@@ -17,6 +17,10 @@ $query="SELECT * FROM questions";
 $results= $mysqli->query($query) or die($mysqli_error.__LINE__);
 $total=$results->num_rows;
 ?>
+<?php
+    if (!isset($_SESSION['user'])){header('Location: logowanie/logowanie.php');}
+    else{echo '<h1>Witaj: '.$_SESSION['user'].'</h1>';}
+?>
 
 
 
