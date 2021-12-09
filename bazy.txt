@@ -6,3 +6,26 @@ choices
 questions
     QuestionNumber int(11) AUTO_INCREMENT
     QuestionText varchar(100)
+
+
+CREATE TABLE `konta` (
+  `id` int(11) NOT NULL,
+  `login` text NOT NULL,
+  `haslo` text NOT NULL,
+  `klasa` varchar(2) NOT NULL,
+  `grupa` int(11) NOT NULL,
+  `imie` text NOT NULL,
+  `nazwisko` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+INSERT INTO `konta` (`id`, `login`, `haslo`, `klasa`, `grupa`, `imie`, `nazwisko`) VALUES
+(1, '10999', '10999', '3n', 1, 'Mateusz', 'Głaz');
+
+ALTER TABLE `konta`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `konta`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
