@@ -1,0 +1,17 @@
+Nrpytania	isCorrect	text pytania
+1	0	biały
+1	1	czerwony
+1	0	niebieski
+1	0	czarny
+2	0	biały 
+2	0	czerwony
+2	1	niebieski
+2	0	czarny
+3	1	biały
+3	0	czerwony
+3	0	niebieski
+3	0	czarny
+4	0	biały
+4	0	czerwony
+4	0	niebieski
+4	1	czarny

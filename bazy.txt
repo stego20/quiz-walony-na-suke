@@ -1,0 +1,8 @@
+choices 
+    questionNumber int(11)
+    isCorrect int(11)
+    choiceText varchar(100)
+
+questions
+    QuestionNumber int(11) AUTO_INCREMENT
+    QuestionText varchar(100)
