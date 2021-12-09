@@ -6,3 +6,13 @@ choices
 questions
     QuestionNumber int(11) AUTO_INCREMENT
     QuestionText varchar(100)
+
+konta
+  `id` int(11) NOT NULL,
+  `login` text NOT NULL,
+  `haslo` text NOT NULL,
+  `klasa` varchar(2) NOT NULL,
+  `grupa` int(11) NOT NULL,
+  `imie` text NOT NULL,
+  `nazwisko` text NOT NULL
+
