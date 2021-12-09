@@ -16,4 +16,3 @@ konta
   `imie` text NOT NULL,
   `nazwisko` text NOT NULL
 
-test
