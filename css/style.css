@@ -12,6 +12,12 @@ body {
 
 }
 
+p {
+    font-size: medium;
+    text-align: right;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 li {
     list-style: none;
 
