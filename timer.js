@@ -1,4 +1,4 @@
-const to_left = 0.03;
+const to_left = 0.10;
 function startTimer(left, time) 
 {
     var timer = left, minutes, seconds;
@@ -12,7 +12,7 @@ function startTimer(left, time)
         if (--timer <= 0) 
         {
             alert("Time Left!");
-            window.location = 'TimeOver.html';
+            window.location = 'final.php';
         }
     }, 1000);
 }
