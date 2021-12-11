@@ -1,7 +1,10 @@
 <?php
 include_once '..\db\conect.php';
 session_start();
-if(isset($_POST['submit'])){
+if (isset($_POST['rejestracja'])){
+    header("Location: rejestracja.php");
+}
+else if(isset($_POST['submit'])){
     
     $login=$_POST['login'];
     $haslo=$_POST['haslo'];
