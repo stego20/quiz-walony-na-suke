@@ -52,12 +52,12 @@ if(isset($_POST["submit"])){
         <h2>Add A Question From TXT File</h2>
         <form action="gettxt.php" method="POST">
             <p>
-                <label>Question TXT</label>
-                <input type="file" required="required" name="questiontxt">
+                <label for="question" class="form-label" >Question TXT</label>
+                <input id="question" class="form-control" type="file" required="required" name="questiontxt">
             </p>
             <p>
-                <label>Choices TXT</label>
-                <input type="file" required="required" name="choicestxt">
+                <label for="choices" class="form-label">Choices TXT</label>
+                <input id="choices" class="form-control" type="file" required="required" name="choicestxt">
             </p>
             <input type="submit" class="btn btn-primary" name="submit" value="Submit">
         </form>
