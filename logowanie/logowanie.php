@@ -43,6 +43,7 @@
             }
         ?>
         <button type="submit" name='submit'>Log in</button>
+        <button type="submit" name='rejestracja'>Register</button>
     </form>
 </body>
 </html>
