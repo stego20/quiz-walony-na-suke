@@ -44,6 +44,9 @@ if(isset($_POST["submit"])){
     }
     $_SESSION["pytania"] = $pytania;
     $_SESSION["odpowiedzi"] = $odp;
+    $_SESSION["operator"] = 0;
+    $_SESSION["end"]=sizeof($pytania)-1;
+    header("Location:check.php");
 }
 
 ?>
