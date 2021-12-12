@@ -9,7 +9,6 @@ if(isset($_POST["usu"])){
 }
 if(isset($_POST["submit"])){
     $nrpyt = $_SESSION["operator"]+$_SESSION["count"]-$_SESSION["usuwanie"];
-    echo($nrpyt);
     $post = $_POST["pytanie"];
     $query = "INSERT INTO questions VALUES('$nrpyt','$post')";
     $run=$mysqli->query($query);
