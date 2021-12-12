@@ -34,8 +34,8 @@ if(isset($_POST["submit"])){
     
     if($count!=0){
         $i=0;
-        while ($i < sizeof($array)){
-            $array[$i][0]+=$count;
+        while ($i < sizeof($odp)){
+            $odp[$i][0]+=$count;
             $i++;}
         $i=0;
         while ($i < sizeof($pytania)){
