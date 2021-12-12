@@ -4,22 +4,26 @@ include_once '..\db/connect.php';
 session_start();
 ?>
 <?php
+if(isset($_POST["usu"])){
+    $_SESSION["usuwanie"]+=1;
+}
 if(isset($_POST["submit"])){
-    $nrpyt = $_SESSION["operator"];
+    $nrpyt = $_SESSION["operator"]+$_SESSION["count"]-$_SESSION["usuwanie"];
+    echo($nrpyt);
     $post = $_POST["pytanie"];
     $query = "INSERT INTO questions VALUES('$nrpyt','$post')";
     $run=$mysqli->query($query);
-    for ($i=0; $i < 4; $i++) { 
+    for ($i=0; $i < 4; $i++) { //na sztywno
         if(!isset($_POST[$i+10])){
             $post = $_POST[$i];
             $query="INSERT INTO choices VALUES('$nrpyt',0,'$post')";
             $run=$mysqli->query($query);
         }
         else{
-        $query = "INSERT INTO choices";
-        $post = $_POST[$i];
-        $query="INSERT INTO choices VALUES('$nrpyt',1,'$post')";
-        $run=$mysqli->query($query);
+            $query = "INSERT INTO choices";
+            $post = $_POST[$i];
+            $query="INSERT INTO choices VALUES('$nrpyt',1,'$post')";
+            $run=$mysqli->query($query);
         }
     }
     
@@ -65,6 +69,7 @@ else{
             <input type="checkbox" name="<?php echo $iscorrect;?>" value="<?php echo $key[1];?>"<?php if($key[1]==1){echo"checked";}?>><input name="<?php echo $textpyt;?>" type="text" value="<?php echo $key[2]; ?>"><br>
         <?php $textpyt+=1; $iscorrect+=1;}?>
         <input type="submit" value="submit" name="submit" class="btn btn-success"/>
+        <input type="submit" value="pomiń/usuń" name="usu" class="btn btn-success"/>
     </form>
     </div>
     </main>

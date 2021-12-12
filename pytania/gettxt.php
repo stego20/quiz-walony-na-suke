@@ -31,21 +31,13 @@ if(isset($_POST["submit"])){
         array_push($odp,$explode);
     }
     array_shift($odp);
-    
-    if($count!=0){
-        $i=0;
-        while ($i < sizeof($odp)){
-            $odp[$i][0]+=$count;
-            $i++;}
-        $i=0;
-        while ($i < sizeof($pytania)){
-            $pytania[$i][0]+=$count;
-            $i++;}
-    }
+
     $_SESSION["pytania"] = $pytania;
     $_SESSION["odpowiedzi"] = $odp;
     $_SESSION["operator"] = 0;
     $_SESSION["end"]=sizeof($pytania)-1;
+    $_SESSION["count"]=$count;
+    $_SESSION["usuwanie"]=0;
     header("Location:check.php");
 }
 
