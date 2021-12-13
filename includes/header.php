@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Quiz</title>
 </head>
-
-
 <body>
+<script src="timer.js"></script> 
+<h1 id="time"></h1>
 </body>
 </html>

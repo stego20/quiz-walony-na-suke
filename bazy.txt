@@ -14,5 +14,6 @@ konta
   `klasa` varchar(2) NOT NULL,
   `grupa` int(11) NOT NULL,
   `imie` text NOT NULL,
-  `nazwisko` text NOT NULL
+  `nazwisko` text NOT NULL,
+  `admin` int(1) NOT NULL
 
