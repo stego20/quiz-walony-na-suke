@@ -19,7 +19,15 @@ $total=$results->num_rows;
 ?>
 <?php
     if (!isset($_SESSION['user'])){header('Location: logowanie/logowanie.php');}
-    else{echo '<h1>Witaj: '.$_SESSION['user'].'</h1>';}
+        else{echo 'Witaj: '.$_SESSION['user'];}
+        if(isset($_SESSION['uprawinienia'])){
+            if($_SESSION['uprawinienia']=='1'){
+                echo '<a href="admin/paneladmin.php">zarządzaj użytkownikami</a>';
+            }
+            else if($_SESSION['uprawinienia']=='0'){
+                
+            }
+        }
 ?>
 
 
