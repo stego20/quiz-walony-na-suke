@@ -16,6 +16,7 @@ else if(isset($_POST['submit'])){
         if($total==1){
             $wiersz=$rezultat->fetch_assoc();
             $_SESSION['user']=$wiersz['imie']." ".$wiersz['nazwisko'];
+            $_SESSION['uprawinienia']=$wiersz['admin'];
             header('Location: ../');
         }
         else{
