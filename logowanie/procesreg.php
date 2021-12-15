@@ -3,7 +3,7 @@ include_once '..\db\conect.php';
 session_start();
 if(isset($_POST['submit'])){
     $login=$_POST['login'];
-    $haslo=$_POST['haslo'];
+    $haslo=base64_encode($_POST['haslo']);
     $klasa=$_POST['klasa'];
     $grupa=$_POST['grupa'];
     $imie=$_POST['imie'];

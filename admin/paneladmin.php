@@ -153,7 +153,7 @@ $rezultat=$polaczenie->query($sql);
             while($row=$rezultat->fetch_assoc()){
                 echo "<form method='post' action='change.php'><tr><td class='id'>".$ile."</td>
                 <td><input class='".$row['id']."' name='login".$row['id']."' value='".$row['login']."'disabled></td>
-                <td><input type='password' class='".$row['id']."' name='haslo".$row['id']."' value='".$row['haslo']."'disabled></td>
+                <td><input type='password' class='".$row['id']."' name='haslo".$row['id']."' value='".base64_decode($row['haslo'])."'disabled></td>
                 <td><input class='".$row['id']."' name='klasa".$row['id']."' value='".$row['klasa']."'disabled></td>
                 <td><input class='".$row['id']."' name='grupa".$row['id']."' value='".$row['grupa']."'disabled></td>
                 <td><input class='".$row['id']."' name='imie".$row['id']."' value='".$row['imie']."'disabled></td>
