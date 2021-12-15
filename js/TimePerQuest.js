@@ -1,4 +1,9 @@
-alert("jestem"); 
+
+var button = document.getElementsByTagName('Next')[0];
+button.onclick = function() {
+    alert("jestem");
+}
+
 
 // const to_left_quest = 5;
 // function startTimer(left, time) 
