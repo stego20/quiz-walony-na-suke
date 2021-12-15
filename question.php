@@ -43,8 +43,8 @@ $choices = $mysqli -> query($query) or die ($mysqli-> error.__LINE__);
             <li><input type="radio" name="choice" value="<?php echo $row['isCorrect'];?>"><?php echo $row['choiceText'];?></li>
            <?php endwhile; ?>
 </ul>
-<input type="submit" value="submit" class="btn btn-success"/>
-<input onclick="startTimer()" type="hidden" name="number" value="<?php echo $number;?>" />
+<input onclick="startTimer()" type="submit" value="submit" class="btn btn-success"/>
+<input type="hidden" name="number" value="<?php echo $number;?>" />
     </form>
     </div>
     </main>
