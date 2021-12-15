@@ -9,7 +9,8 @@
     <title>Quiz</title>
 </head>
 <body>
-<script src="timer.js"></script> 
+<script src="TimePerQuest.js"></script> 
+<script src="/TimePerTest.js"></script> 
 <h1 id="time"></h1>
 </body>
 </html>

@@ -44,9 +44,7 @@ $choices = $mysqli -> query($query) or die ($mysqli-> error.__LINE__);
            <?php endwhile; ?>
 </ul>
 <input type="submit" value="submit" class="btn btn-success"/>
-<input type="hidden" name="number" value="<?php echo $number;?>" />
-
-
+<input onclick="startTimer()" type="hidden" name="number" value="<?php echo $number;?>" />
     </form>
     </div>
     </main>
