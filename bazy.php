@@ -1,9 +1,9 @@
 <?php
 $mysqli = mysqli_connect("127.0.0.1","root","","") or die("nie działa");
-$query="CREATE DATABASE IF NOT EXISTS quiz2 DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci;";
+$query="CREATE DATABASE IF NOT EXISTS quiz DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci;";
 $run = $mysqli->query($query);
 
-$query="USE quiz2;";
+$query="USE quiz;";
 $run = $mysqli->query($query);
 
 $query="CREATE TABLE chioces (
