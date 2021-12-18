@@ -1,7 +1,17 @@
 <?php
-include_once 'includes\header.php';
-include_once 'db\connect.php';
+    include_once 'db\connect.php';
+    include_once 'includes\header.php';
+    session_start();
+    unset ($_SESSION['ile']);
+    $sql="SELECT * FROM question";
+    $result=$mysqli->query($sql) or die ($mysqli_error.__LINE__);
+    $total=$result->num_rows;
+    // if (!isset($_SESSION['user'])){
+    //     header('Location: logowanie/logowanie.php');
+    //     echo 'Witaj: '.$_SESSION['user'];
+    // }
 ?>
+
 
 <div class="container">
 <header>
@@ -23,10 +33,12 @@ $total=$results->num_rows;
       if(isset($_SESSION['uprawinienia'])){
         if($_SESSION['uprawinienia']=='1'){
           echo '<a href="admin/paneladmin.php">zarządzaj użytkownikami</a>';
+
             }
             else if($_SESSION['uprawinienia']=='0'){
                }
         }
+
 
 ?>
 
@@ -51,4 +63,5 @@ include_once 'includes\footer.php';
 ?>
 </div>
 </main>
+
 
