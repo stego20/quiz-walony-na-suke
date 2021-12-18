@@ -24,11 +24,12 @@ $query = "SELECT * FROM choices WHERE questionNumber = $number";
 $choices = $mysqli -> query($query) or die ($mysqli-> error.__LINE__);
 ?>
 
-
+<script src="js/main.js"></script> 
 
 <header>
     <div class="container">
         <h1> PHP Quizer</h1>
+        <p id="timer">00:00</p>
     </div>
 
 </header>
@@ -42,11 +43,11 @@ $choices = $mysqli -> query($query) or die ($mysqli-> error.__LINE__);
             <?php while($row = $choices-> fetch_assoc()): ?>
             <li><input type="radio" name="choice" value="<?php echo $row['isCorrect'];?>"><?php echo $row['choiceText'];?></li>
            <?php endwhile; ?>
-</ul>
-<input name="Next" type="submit" value="submit" class="btn btn-success"/>
-<input type="hidden" name="number" value="<?php echo $number;?>" />
+        </ul>
+    <input id="NextQuest" type="submit" value="submit" class="btn btn-success"/>
+    <input type="hidden" name="number" value="<?php echo $number;?>" />
     </form>
-    </div>
+</div>
     </main>
 </div>
 

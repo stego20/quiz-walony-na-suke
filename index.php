@@ -6,10 +6,10 @@ include_once 'db\connect.php';
 <div class="container">
 <header>
     <div class="container">
-        <h1>PHP QUIZERR</h1>
-
+        <h1 id="demo">PHP QUIZERR</h1>
     </div>
 </header>
+
 
 <?php
 
@@ -18,8 +18,8 @@ $results= $mysqli->query($query) or die($mysqli_error.__LINE__);
 $total=$results->num_rows;
 ?>
 <?php
-    if (!isset($_SESSION['user'])){header('Location: logowanie/logowanie.php');}
-    else{echo '<h1>Witaj: '.$_SESSION['user'].'</h1>';}
+    // if (!isset($_SESSION['user'])){header('Location: logowanie/logowanie.php');}
+    // else{echo '<h1>Witaj: '.$_SESSION['user'].'</h1>';}
 ?>
 
 
@@ -35,7 +35,8 @@ $total=$results->num_rows;
     <li><strong> Estimated time: </strong><?php echo $total * 0.5; ?> Minutes </li>
 
 </ul>
-<a href="question.php?n=1" class="btn btn-primary">Start Quiz</a>
+<a onclick="StartTimer()" href="question.php?n=1" class="btn btn-primary">Start Quiz</a>
+<!-- Needed -->
 </div>
 <?php
 include_once 'includes\footer.php';
