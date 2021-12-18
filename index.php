@@ -14,7 +14,7 @@
 <div class="container">
 <header>
     <div class="container">
-        <h1 id="demo">PHP QUIZERR</h1>
+        <h1>PHP QUIZERR</h1>
     </div>
 </header>
 
@@ -52,7 +52,7 @@ $total=$results->num_rows;
     <li><strong> Estimated time: </strong><?php echo $total * 0.5; ?> Minutes </li>
 
 </ul>
-<a onclick="StartTimer()" href="question.php?n=1" class="btn btn-primary">Start Quiz</a>
+<a href="question.php?n=1" class="btn btn-primary">Start Quiz</a>
 <!-- Needed -->
 </div>
 <?php
