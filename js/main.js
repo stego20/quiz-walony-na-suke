@@ -24,20 +24,20 @@ window.onload = function ()
     startTimer(countdown, time);
 };
 
-function OnPage() 
-{
-  var controller = null;
-  $( "html" )
-    .mouseenter(function() 
-    {
-      controller = 1;
-      $( "h2", this ).last().text( "Jesteś w porządku." );
+// function OnPage() 
+// {
+//   var controller = null;
+//   $( "html" )
+//     .mouseenter(function() 
+//     {
+//       controller = 1;
+//       $( "h2", this ).last().text( "Jesteś w porządku." );
 
-    })
-    .mouseleave(function() 
-    {
-      controller = 0;
-      $( "h2", this ).last().text( "Nie ściągaj kurwo!" );
-    });
-}
-OnPage();
+//     })
+//     .mouseleave(function() 
+//     {
+//       controller = 0;
+//       $( "h2", this ).last().text( "Nie ściągaj kurwo!" );
+//     });
+// }
+// OnPage();
