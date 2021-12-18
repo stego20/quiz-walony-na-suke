@@ -2,6 +2,7 @@
 include_once '../includes/header.php';
 include_once '../db/connect.php';
 
+"Dupa gówno chuj";
 
 
 if(isset($_POST['submit'])){
