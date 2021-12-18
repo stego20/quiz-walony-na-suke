@@ -47,6 +47,12 @@ if($_SESSION["end"]>=$_SESSION["operator"]){
     
 }
 else{
+    unset($_SESSION["pytania"]);
+    unset($_SESSION["odpowiedzi"]);
+    unset($_SESSION["operator"]);
+    unset($_SESSION["end"]);
+    unset($_SESSION["count"]);
+    unset($_SESSION["usuwanie"]);
     header("Location:gettxt.php");
 }
 ?>
