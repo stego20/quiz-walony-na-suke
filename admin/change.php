@@ -1,5 +1,5 @@
 <?php
-include_once '..\db\conect.php';
+include_once '..\db\connect.php';
 include_once '..\includes\header.php';
 session_start();
 
@@ -13,12 +13,12 @@ $nazwisko=$_POST['nazwisko'.$i];
 $admin=$_POST['admin'.$i];
 unset($_POST);
 $sql="SELECT * FROM konta WHERE `login`='".$login."' and klasa='".$klasa."' and grupa='".$grupa."' and imie='".$imie."' and nazwisko='".$nazwisko."' and `admin`='".$admin."'";
-$rezultat=$polaczenie->query($sql); 
+$rezultat=$mysqli->query($sql); 
 
 echo $login." ".$klasa." ".$grupa." ".$imie." ".$nazwisko." ".$admin."<br>";
 if ($rezultat->num_rows==0){
     $update="UPDATE konta SET `login`='".$login."',klasa='".$klasa."',grupa='".$grupa."',imie='".$imie."',nazwisko='".$nazwisko."',admin='".$admin."' WHERE id='".$i."'";
-    $rezultat2=$polaczenie->query($update) or die ("nie");
+    $rezultat2=$mysqli->query($update) or die ("nie");
     if($rezultat2){
         header("Location: paneladmin.php");
     }
