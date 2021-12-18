@@ -6,7 +6,7 @@ $run = $mysqli->query($query);
 $query="USE quiz;";
 $run = $mysqli->query($query);
 
-$query="CREATE TABLE chioces (
+$query="CREATE TABLE choices (
     questionNumber int(11) NOT NULL,
     isCorrect int(11) NOT NULL,
     choiceText varchar(100) NOT NULL

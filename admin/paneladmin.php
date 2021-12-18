@@ -1,5 +1,5 @@
 <?php
-include_once '..\db\conect.php';
+include_once '..\db\connect.php';
 include_once '..\includes\header.php';
 session_start();
 if (isset($_POST['submit'])){
@@ -8,7 +8,7 @@ if (isset($_POST['submit'])){
     unset($_POST);
     $search=array();
     $index=0;
-    $rezultat=$polaczenie->query($sql);
+    $rezultat=$mysqli->query($sql);
     while($row=$rezultat->fetch_assoc()){
         $search[$row['id']]='szukane';
         $index++;
@@ -18,7 +18,7 @@ if (isset($_POST['submit'])){
     $sql="SELECT * FROM konta";
     
 }
-$rezultat=$polaczenie->query($sql);
+$rezultat=$mysqli->query($sql);
 
 ?>
 

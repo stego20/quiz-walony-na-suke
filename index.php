@@ -1,7 +1,15 @@
 <?php
-include_once 'includes\header.php';
-include_once 'db\connect.php';
+    include_once 'db\connect.php';
+    include_once 'includes\header.php';
+    session_start();
+    unset ($_SESSION['ile']);
+    
+    // if (!isset($_SESSION['user'])){
+    //     header('Location: logowanie/logowanie.php');
+    //     echo 'Witaj: '.$_SESSION['user'];
+    // }
 ?>
+
 
 <div class="container">
 <header>
@@ -12,21 +20,22 @@ include_once 'db\connect.php';
 
 
 <?php
-
 $query="SELECT * FROM questions";
 $results= $mysqli->query($query) or die($mysqli_error.__LINE__);
 $total=$results->num_rows;
 ?>
 <?php
-  if (!isset($_SESSION['user'])){header('Location: logowanie/logowanie.php');}
+  if (!isset($_SESSION['user'])){echo '<a href="logowanie/logowanie.php">Zaloguj się</a>';}
     else{echo 'Witaj: '.$_SESSION['user'];}
       if(isset($_SESSION['uprawinienia'])){
         if($_SESSION['uprawinienia']=='1'){
           echo '<a href="admin/paneladmin.php">zarządzaj użytkownikami</a>';
+
             }
             else if($_SESSION['uprawinienia']=='0'){
                }
         }
+
 
 ?>
 
@@ -51,4 +60,5 @@ include_once 'includes\footer.php';
 ?>
 </div>
 </main>
+
 
