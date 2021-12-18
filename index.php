@@ -3,9 +3,7 @@
     include_once 'includes\header.php';
     session_start();
     unset ($_SESSION['ile']);
-    $sql="SELECT * FROM question";
-    $result=$mysqli->query($sql) or die ($mysqli_error.__LINE__);
-    $total=$result->num_rows;
+    
     // if (!isset($_SESSION['user'])){
     //     header('Location: logowanie/logowanie.php');
     //     echo 'Witaj: '.$_SESSION['user'];
@@ -22,7 +20,6 @@
 
 
 <?php
-
 $query="SELECT * FROM questions";
 $results= $mysqli->query($query) or die($mysqli_error.__LINE__);
 $total=$results->num_rows;
