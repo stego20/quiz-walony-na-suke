@@ -29,6 +29,7 @@ $choices = $mysqli -> query($query) or die ($mysqli-> error.__LINE__);
 <header>
     <div class="container">
         <h1> PHP Quizer</h1>
+        <h2></h2>
         <p id="timer">00:00</p>
     </div>
 
