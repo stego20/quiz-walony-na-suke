@@ -20,7 +20,7 @@ if(isset($_POST['submit'])){
             $rezultat=$mysqli->query($sql);
             $total=$rezultat->num_rows;
             echo 'tu';
-            $insert="INSERT INTO konta VALUES(null,'".$login."','".$haslo."','".$klasa."','".$grupa."','".$imie."','".$nazwisko."',0)";
+            $insert="INSERT INTO konta VALUES('".$total."','".$login."','".$haslo."','".$klasa."','".$grupa."','".$imie."','".$nazwisko."',0)";
             if($rezultat=$mysqli->query($insert) or die ($mysqli_error.__LINE__)){
                 header("Location: logowanie.php");
             };

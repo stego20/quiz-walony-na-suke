@@ -25,7 +25,7 @@ $results= $mysqli->query($query) or die($mysqli_error.__LINE__);
 $total=$results->num_rows;
 ?>
 <?php
-  if (!isset($_SESSION['user'])){header('Location: logowanie/logowanie.php');}
+  if (!isset($_SESSION['user'])){echo '<a href="logowanie/logowanie.php">Zaloguj się</a>';}
     else{echo 'Witaj: '.$_SESSION['user'];}
       if(isset($_SESSION['uprawinienia'])){
         if($_SESSION['uprawinienia']=='1'){
