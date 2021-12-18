@@ -16,9 +16,10 @@ if(isset($_POST['submit'])){
             $ile=$rezultat2->num_rows;
             echo $ile;
         if ($ile==0){
-            $sql="SELECT * FROM konta";
+            $sql="SELECT id FROM konta order by id DESC limit 1;";
             $rezultat=$mysqli->query($sql);
-            $total=$rezultat->num_rows;
+            $id=$rezultat->fetch_assoc();
+            $total=(int)$id['id']+1;
             echo 'tu';
             $insert="INSERT INTO konta VALUES('".$total."','".$login."','".$haslo."','".$klasa."','".$grupa."','".$imie."','".$nazwisko."',0)";
             if($rezultat=$mysqli->query($insert) or die ($mysqli_error.__LINE__)){
