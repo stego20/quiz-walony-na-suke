@@ -16,6 +16,7 @@ $run = $mysqli->query($query);
 $query="CREATE TABLE questions(
     QuestionNumber int(11)NOT NULL,
     QuestionText varchar(100)NOT NULL,
+    imgpath varchar(200),
     PRIMARY KEY (QuestionNumber)
 );";
 $run = $mysqli->query($query);
