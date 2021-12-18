@@ -18,7 +18,7 @@ if(isset($_POST["submit"])){
         $fileName = uniqid("",true).".".$ext;
         
         $upload = '../foto/'.$fileName;
-        echo $upload;
+    
         move_uploaded_file($fileTmpName,$upload);
         
         $nrpyt = $_SESSION["operator"]+$_SESSION["count"]-$_SESSION["usuwanie"];
