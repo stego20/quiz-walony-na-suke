@@ -1,7 +1,7 @@
 <?php
 include_once '../includes/header.php';
 include_once '../db/connect.php';
-
+session_start();
 
 if(isset($_POST['submit'])){
     $questionNumber=$_POST['questionNumber'];
@@ -15,7 +15,7 @@ if(isset($_POST['submit'])){
     $choice[4]=$_POST['choice4'];
     $choice[5]=$_POST['choice5'];
 
-    $sql="INSERT INTO questions VALUES('$questionNumber','$questiontext')";
+    $sql="INSERT INTO questions VALUES('".$_SESSION['id']."','$questionNumber','$questiontext')";
 
     $insertrow=$mysqli->query($sql) or die($mysqli->error.__LINE__);
 
@@ -29,7 +29,7 @@ if(isset($_POST['submit'])){
                     $isCorect=0;
                 }
 
-                $sql2="INSERT INTO choices VALUES('$questionNumber','$isCorect','$value')";
+                $sql2="INSERT INTO choices VALUES('".$_SESSION['id']."','$questionNumber','$isCorect','$value')";
                 $inserrow2=$mysqli->query($sql2) or die($mysqli->error.__LINE__);
 
                 if($inserrow2){
@@ -43,7 +43,7 @@ if(isset($_POST['submit'])){
         $msg='Question has been added';
     }
 }
-$sql3 = "SELECT * FROM questions";
+$sql3 = "SELECT * FROM questions WHERE id_quiz='".$_SESSION['id']."'";
 $questions = $mysqli->query($sql3) or die($mysqli->error.__LINE__);
 $total = $questions->num_rows;
 $next = $total+1;
@@ -59,6 +59,7 @@ $next = $total+1;
 
         ?>
         <form action="dashboard.php" method="POST">
+            <input type="hidden" name="id-quiz" value=<?php echo $_SESSION['id'];  ?>>
             <p>
                 <label for="questionNumber">Question Number</label>
                 <input type="number" value="<?php echo $next;?>" name="questionNumber">
@@ -92,7 +93,7 @@ $next = $total+1;
                 <input type="number" name="correctChoice">
             </p>
             <input type="submit" class="btn btn-primary" name="submit" value="Submit">
-            <a href="index.php" class="btn btn-primary">Back</a>
+            <a href="../index.php" class="btn btn-primary">Back</a>
         </form>
     </div>
 </mian>
