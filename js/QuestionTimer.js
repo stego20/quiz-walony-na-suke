@@ -27,4 +27,3 @@ window.onload = function()
     var left = 60 * 0.5, time = document.getElementById('timer');
     QuestionTimer(left, time);
 };
-

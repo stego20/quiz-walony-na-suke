@@ -1,5 +1,9 @@
 <?php
-$mysqli = mysqli_connect("127.0.0.1","root","","") or die("nie działa");
+$dbHostName= "sql4.5v.pl";
+$dbHostUser="stego_quiztakov2";
+$dbHostPasswd="s0i20tl935";
+$dbName="stego_quiztakov2";
+$mysqli = mysqli_connect($dbHostName,$dbHostUser,$dbHostPasswd,$dbName) or die("nie działa");
 $query="CREATE DATABASE IF NOT EXISTS quiz DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci;";
 $run = $mysqli->query($query);
 
@@ -39,7 +43,7 @@ $query = "CREATE TABLE img(
     id int(100) NOT NULL,
     imgpath varchar(200) NOT NULL,
     PRIMARY KEY (id)
-)"
+)";
 $run = $mysqli->query($query);
 
 $query = "CREATE TABLE quizy(
@@ -47,18 +51,18 @@ $query = "CREATE TABLE quizy(
     `name` varchar(200) NOT NULL,
     id_n int(100) NOT NULL
 
-)"
+)";
 $run = $mysqli->query($query);
 
 $query = "CREATE TABLE kolejka(
     id_sesji int(100) NOT NULL,
     `name` varchar(200) NOT NULL,
-    id-quiz int(100) NOT NULL,
+    id_quiz int(100) NOT NULL,
     data_start datetime NOT NULL,
     data_koniec datetime NOT NULL,
     klasa varchar(2) NOT NULL,
     grupa int(1) NOT NULL 
-)"
+)";
 $run = $mysqli->query($query);
 
 

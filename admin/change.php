@@ -1,6 +1,6 @@
 <?php
-include_once '..\db\connect.php';
-include_once '..\includes\header.php';
+include_once '../db/connect.php';
+include_once '../includes/header.php';
 session_start();
 
 $i=$_POST['edit'];
