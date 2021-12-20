@@ -2,6 +2,7 @@
 include_once '../includes/header.php';
 include_once '../db/connect.php';
 session_start();
+
 if (isset($_POST['id_quiz'])){
     $_SESSION['id']=$_POST['id_quiz'];
     unset($_POST['id_quiz']);
@@ -18,7 +19,7 @@ if(isset($_POST['submit'])){
     $choice[4]=$_POST['choice4'];
     $choice[5]=$_POST['choice5'];
 
-    $sql="INSERT INTO questions VALUES('".$_SESSION['id']."','$questionNumber','$questiontext')";
+    $sql="INSERT INTO `questions`(`id_quiz`, `QuestionNumber`, `QuestionText`, `idimg`) VALUES('".$_SESSION['id']."','".$questionNumber."','".$questiontext."',null)";
 
     $insertrow=$mysqli->query($sql) or die($mysqli->error.__LINE__);
 
@@ -32,7 +33,7 @@ if(isset($_POST['submit'])){
                     $isCorect=0;
                 }
 
-                $sql2="INSERT INTO choices VALUES('".$_SESSION['id']."','$questionNumber','$isCorect','$value')";
+                $sql2="INSERT INTO `choices`(`id_quiz`, `questionNumber`, `isCorrect`, `choiceText`) VALUES('".$_SESSION['id']."','".$questionNumber."','".$isCorect."','$value')";
                 $inserrow2=$mysqli->query($sql2) or die($mysqli->error.__LINE__);
 
                 if($inserrow2){
