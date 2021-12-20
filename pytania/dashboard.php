@@ -99,4 +99,5 @@ $next = $total+1;
             <a href="../index.php" class="btn btn-primary">Back</a>
         </form>
     </div>
+    <a href="gettxt.php">dodaj pytania masowo</a>
 </mian>
