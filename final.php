@@ -5,7 +5,7 @@
     <h1>You are done</h1>
     <p> Congrats ! You have completed the test </php>
     <p>final score: <?php echo $_SESSION['score']; ?> </p>
-    <a href="question.php?n=1" class="btn btn-secondary"> Take Again</a> 
+    <a href="index.php" class="btn btn-secondary"> back to menu</a> 
     </div>
 </main>
-<?php include_once 'includes\footer.php'; ?>
+<?php include_once 'includes/footer.php'; ?>

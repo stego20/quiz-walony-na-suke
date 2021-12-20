@@ -49,7 +49,7 @@ $total=$rezultat->num_rows;
 <!-- Needed -->
 </div>
 <?php
-include_once 'includes\footer.php';
+include_once 'includes/footer.php';
 ?>
 </div>
 </main>

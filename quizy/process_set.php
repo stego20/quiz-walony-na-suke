@@ -23,9 +23,11 @@ if (isset($_POST)){
             $search="SELECT id FROM quizy WHERE `name`='".$name."' AND `id_n`='".$_SESSION['user-id']."'";
             $id_quiz=$mysqli->query($search);
             $id_quiz=$id_quiz->fetch_assoc();
-            $sql="SELECT id_sesji FROM kolejka order by id_sesji DESC limit 1;";
+            $sql="SELECT id_sesji FROM kolejka order by id_sesji DESC limit 1";
             $rezultat=$mysqli->query($sql);
+            echo 'tu';
             $ilerekordow=$rezultat->num_rows;
+            echo $ilerekordow;
             if ($ilerekordow==0){
                 $total=0;
             }

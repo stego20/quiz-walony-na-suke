@@ -19,9 +19,9 @@ if(isset($_POST['submit'])){
     $choice[4]=$_POST['choice4'];
     $choice[5]=$_POST['choice5'];
 
-    $sql="INSERT INTO `questions`(`id_quiz`, `QuestionNumber`, `QuestionText`, `idimg`) VALUES('".$_SESSION['id']."','".$questionNumber."','".$questiontext."',NULL)";
+    $sql="INSERT INTO `questions`(`id_quiz`, `QuestionNumber`, `QuestionText`, `idimg`) VALUES('".$_SESSION['id']."','".$questionNumber."','".$questiontext."',null)";
 
-    $insertrow=$mysqli->query($sql) or die("tu");
+    $insertrow=$mysqli->query($sql) or die($mysqli->error.__LINE__);
 
     if($insertrow){
         foreach ($choice as $choice => $value) {
@@ -34,7 +34,7 @@ if(isset($_POST['submit'])){
                 }
 
                 $sql2="INSERT INTO `choices`(`id_quiz`, `questionNumber`, `isCorrect`, `choiceText`) VALUES('".$_SESSION['id']."','".$questionNumber."','".$isCorect."','$value')";
-                $inserrow2=$mysqli->query($sql2) or die("tu2");
+                $inserrow2=$mysqli->query($sql2) or die($mysqli->error.__LINE__);
 
                 if($inserrow2){
                     continue;
