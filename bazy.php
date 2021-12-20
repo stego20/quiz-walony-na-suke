@@ -39,7 +39,7 @@ $query = "CREATE TABLE img(
     id int(100) NOT NULL,
     imgpath varchar(200) NOT NULL,
     PRIMARY KEY (id)
-)"
+)";
 $run = $mysqli->query($query);
 
 $query = "CREATE TABLE quizy(
@@ -47,7 +47,7 @@ $query = "CREATE TABLE quizy(
     `name` varchar(200) NOT NULL,
     id_n int(100) NOT NULL
 
-)"
+)";
 $run = $mysqli->query($query);
 
 $query = "CREATE TABLE kolejka(
@@ -58,7 +58,7 @@ $query = "CREATE TABLE kolejka(
     data_koniec datetime NOT NULL,
     klasa varchar(2) NOT NULL,
     grupa int(1) NOT NULL 
-)"
+)";
 $run = $mysqli->query($query);
 
 
