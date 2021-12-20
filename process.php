@@ -2,8 +2,8 @@
 
 use function PHPSTORM_META\type;
 
-include_once 'includes\header.php'; ?>
-<?php include_once 'db\connect.php'; ?>
+include_once 'includes/header.php'; ?>
+<?php include_once 'db/connect.php'; ?>
 
 
 <?php session_start(); ?>

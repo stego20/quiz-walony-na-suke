@@ -1,5 +1,5 @@
 <?php
-include_once '..\db\connect.php';
+include_once '../db/connect.php';
 session_start();
 if (isset($_POST['rejestracja'])){
     header("Location: rejestracja.php");

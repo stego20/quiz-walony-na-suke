@@ -1,7 +1,7 @@
 <?php
 
-include_once 'includes\header.php';
-include_once 'db\connect.php';
+include_once 'includes/header.php';
+include_once 'db/connect.php';
 session_start();
 
 $query="SELECT * FROM questions WHERE id_quiz='".$_SESSION['id_quiz_gra']."'";

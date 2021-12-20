@@ -1,6 +1,6 @@
 <?php
-    include_once 'db\connect.php';
-    include_once 'includes\header.php';
+    include_once 'db/connect.php';
+    include_once 'includes/header.php';
     session_start();
     unset ($_SESSION['ile']);
     unset($_SESSION['blad_add']);
@@ -40,7 +40,7 @@ if (isset($_SESSION['grupa']) && isset($_SESSION['klasa'])){
   $query="SELECT * FROM kolejka WHERE klasa='".$_SESSION['klasa']."' AND grupa='".$_SESSION['grupa']."' OR grupa='3' AND data_start<='".date('Y-m-d H:i:s')."' AND data_koniec>='".date('Y-m-d H:i:s')."'";
   $results= $mysqli->query($query) or die($mysqli_error.__LINE__);
   while($row=$results->fetch_assoc()){
-      echo "<button type=submit name='quiz_id' value='".$row['id-quiz']."'>".$row['name']."</button>";
+      echo "<button type=submit name='quiz_id' value='".$row['id_quiz']."'>".$row['name']."</button>";
   }
 }
 

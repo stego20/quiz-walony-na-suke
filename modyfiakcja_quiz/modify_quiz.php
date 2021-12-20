@@ -1,6 +1,6 @@
 <?php
-include_once '..\db\connect.php';
-include_once '..\includes\header.php';
+include_once '../db/connect.php';
+include_once '../includes/header.php';
 session_start();
 if (isset($_POST['submit'])){
     $wyszukiwanie=$_POST['wyszukiwarka'];
@@ -65,44 +65,13 @@ $rezultat=$mysqli->query($sql);
     </style>
 </head>
 <body>
-    <script>
+<script>
         var ile=0
         var zapisane=true;
         var aktualne=0;
         function change(id){
             var przycisk=document.getElementsByName(id);
-            console.log(id)
-            if (aktualne==0){
-                aktualne=id
-            }
-            if (zapisane==true && ile==0 ){
-                ile=1;
-                var pamiec=id
-                var element=document.getElementsByClassName(id);
-                for (let index = 0; index < element.length; index++) {
-                    if(index!=1){
-                        element[index].disabled=false;
-                    }
-
-                    
-                }
-
-                var przycisk=document.getElementsByName(id);
-                przycisk[0].innerHTML='<i class="fas fa-save"></i>';
-                przycisk[0].style.backgroundColor='lime';
-                przycisk[1].style.display='none'
-                zapisane=false; 
-            }
-            else if (aktualne==id && zapisane==false){
-                var przycisk=document.getElementsByName(id);
-                przycisk[0].type='submit';
-                ile=0;
-                aktualne=0
-                przycisk[0].value=id;
-                przycisk[0].setAttribute('name','edit');
-                przycisk[0].formAction='change.php' 
-                zapisane=true;
-            }
+            location.href="change_question.php?n="+id;
             
         }
         var pierwszy=0
@@ -145,7 +114,7 @@ $rezultat=$mysqli->query($sql);
         <?php
         $ile=1;
             while($row=$rezultat->fetch_assoc()){
-                echo "<form method='post' action='change.php'><tr><td class='id'>".$ile."</td>
+                echo "<form method='post' action='change.php'><tr><td class='id'>".$ile."<input type='hidden' name='quiz_id' value='".$row['id']."'></td>
                 <td><input class='".$row['id']."' name='login".$row['id']."' value='".$row['name']."'disabled></td>
                 <td  class='Modyfikacja' id='".$row['id']."'><div ><button  onclick='change(".$row['id'].")' type='button' name=".$row['id']." value='edit' style='background-color: lightblue; border: none; '><i class='fas fa-pen' ></i></button></form>
                 <button onclick='deletee(".$row['id'].")' type='button' name=".$row['id']." value='DELETE' style='background-color: red; border: none;'><i class='fas fa-trash-alt'></i></button><div></td></tr>";
