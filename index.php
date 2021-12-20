@@ -10,7 +10,14 @@
 ?>
 
 
-<div class="container">
+
+
+<header>
+    <div class="container">
+        <h1>PHP QUIZERR</h1>
+    </div>
+</header>
+
 
 
 
@@ -31,6 +38,24 @@
 
 
 ?>
+
+
+
+
+<main>
+    <div class="container">
+        <h2> Test your PHP Knowlege</h2>
+<p> This is the multiple choice quiz to test your knowledge of PHP</p>
+<ul>
+    <li><strong> Number of Questions: </strong><?php echo $total;?> </li>
+    <li><strong> Type Of Quiz: </strong> Multiple Choice</li>
+    <li><strong> Estimated time: </strong><?php echo $total * 0.5; ?> Minutes </li>
+
+</ul>
+<a href="question.php?n=1" class="btn btn-primary">Start Quiz</a>
+<!-- Needed -->
+</div>
+
 <?php
 include_once 'includes\footer.php';
 ?>
