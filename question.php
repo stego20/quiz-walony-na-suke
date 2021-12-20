@@ -19,19 +19,9 @@ $question=$result->fetch_assoc();
 $query = "SELECT * FROM choices WHERE questionNumber = $number AND id_quiz='".$_SESSION['id_quiz_gra']."'";
 $choices = $mysqli -> query($query) or die ($mysqli-> error.__LINE__);
 
-//Furtka na wybór timera zależnie od typu Quizu
-$decy = 0;
-if ($decy == 0) 
-{
-    echo('<script src="js/QuizTimer.js"></script>');
-}
-elseif ($decy == 1) 
-{
-    echo('<script src="js/QuestionTimer.js"></script>');
-}
-
 ?>
 
+<script src="js/main.js"></script> 
 <header>
     <div class="container">
         <h1> PHP Quizer</h1>
@@ -79,12 +69,11 @@ elseif ($decy == 1)
       controller = controller+1;
       if (controller >= 3) 
       {
-          alert("Jebać kapusi");
-          controller = 0;
+          console.log('wychodzi');
         // Dodaje rekord 
         // let order = "< !!!SPACJA!!! ?php if(mysqli_query($conn, $sql)) {} !!!ENTER!!!mysqli_close($conn);?>";
       }
     });
 </script> 
 
-<?php include_once 'includes\footer.php'; ?>
+<?php include_once 'includes/footer.php'; ?>
