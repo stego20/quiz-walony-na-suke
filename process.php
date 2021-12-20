@@ -2,8 +2,8 @@
 
 use function PHPSTORM_META\type;
 
-include_once 'includes\header.php'; ?>
-<?php include_once 'db\connect.php'; ?>
+include_once 'includes/header.php'; ?>
+<?php include_once 'db/connect.php'; ?>
 
 
 <?php session_start(); ?>
@@ -22,7 +22,7 @@ if ($_POST) {
     $next = $number + 1;
 
 }
-$query = "SELECT * FROM questions";
+$query = "SELECT * FROM questions WHERE id_quiz='".$_SESSION['id_quiz_gra']."'";
 
 $result= $mysqli->query($query) or die($mysqli_error.__LINE__);
 $total=$result->num_rows;
