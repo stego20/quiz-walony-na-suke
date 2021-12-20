@@ -1,5 +1,5 @@
 <?php
-include_once '..\db\connect.php';
+include_once '../db/connect.php';
 session_start();
 if (isset($_POST['rejestracja'])){
     header("Location: rejestracja.php");
@@ -17,6 +17,9 @@ else if(isset($_POST['submit'])){
             $wiersz=$rezultat->fetch_assoc();
             $_SESSION['user']=$wiersz['imie']." ".$wiersz['nazwisko'];
             $_SESSION['uprawinienia']=$wiersz['admin'];
+            $_SESSION['klasa']=$wiersz['klasa'];
+            $_SESSION['grupa']=$wiersz['grupa'];
+            $_SESSION['user-id']=$wiersz['id'];
             header('Location: ../');
         }
         else{

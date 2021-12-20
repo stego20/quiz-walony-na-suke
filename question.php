@@ -1,10 +1,10 @@
 <?php
 
-include_once 'includes\header.php';
-include_once 'db\connect.php';
+include_once 'includes/header.php';
+include_once 'db/connect.php';
 session_start();
 
-$query="SELECT * FROM questions";
+$query="SELECT * FROM questions WHERE id_quiz='".$_SESSION['id_quiz_gra']."'";
 $results= $mysqli->query($query) or die($mysqli_error.__LINE__);
 $total=$results->num_rows;
 
@@ -12,11 +12,11 @@ $number = (int)$_GET['n'];
 
 if($number==1){($_SESSION)['score']=0;}
     
-$query = "SELECT * FROM questions WHERE QuestionNumber = $number";
+$query = "SELECT * FROM questions WHERE QuestionNumber = $number AND id_quiz='".$_SESSION['id_quiz_gra']."'";
 $result= $mysqli->query($query) or die($mysqli_error.__LINE__);
 $question=$result->fetch_assoc();
 
-$query = "SELECT * FROM choices WHERE questionNumber = $number";
+$query = "SELECT * FROM choices WHERE questionNumber = $number AND id_quiz='".$_SESSION['id_quiz_gra']."'";
 $choices = $mysqli -> query($query) or die ($mysqli-> error.__LINE__);
 
 //Furtka na wybór timera zależnie od typu Quizu
