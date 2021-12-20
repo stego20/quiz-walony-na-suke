@@ -32,16 +32,19 @@
 
 ?>
 <?php
-include_once 'includes\footer.php';
+include_once 'includes/footer.php';
 ?>
 <div class='grid'><form method='post' action='quiz_menu.php'>
 <?php
 if (isset($_SESSION['grupa']) && isset($_SESSION['klasa'])){
   $query="SELECT * FROM kolejka WHERE klasa='".$_SESSION['klasa']."' AND grupa='".$_SESSION['grupa']."' OR grupa='3' AND data_start<='".date('Y-m-d H:i:s')."' AND data_koniec>='".date('Y-m-d H:i:s')."'";
   $results= $mysqli->query($query) or die($mysqli_error.__LINE__);
-  while($row=$results->fetch_assoc()){
+  if($results->num_rows!=0){
+    while($row=$results->fetch_assoc()){
       echo "<button type=submit name='quiz_id' value='".$row['id_quiz']."'>".$row['name']."</button>";
   }
+  }
+  
 }
 
 

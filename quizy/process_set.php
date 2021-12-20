@@ -25,7 +25,8 @@ if (isset($_POST)){
             $id_quiz=$id_quiz->fetch_assoc();
             $sql="SELECT id_sesji FROM kolejka order by id_sesji DESC limit 1;";
             $rezultat=$mysqli->query($sql);
-            if ($rezultat->num_rows==0){
+            $ilerekordow=$rezultat->num_rows;
+            if ($ilerekordow==0){
                 $total=0;
             }
             $id=$rezultat->fetch_assoc();
