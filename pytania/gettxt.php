@@ -56,7 +56,7 @@ if(isset($_POST["submit"])){
             </p>
             <input type="submit" class="btn btn-primary" name="submit" value="Submit">
         </form>
-        
+        <a href="dashboard.php" class="btn btn-primary">Back</a>
     </div>
 </mian>
 <?php include_once '..\includes\footer.php'; ?>
