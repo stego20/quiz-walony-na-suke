@@ -32,7 +32,7 @@ if (isset($_POST)){
                 $total=0;
             }
             $id=$rezultat->fetch_assoc();
-            $total=(int)$id['id']+1;
+            $total=(int)$id['id_sesji']+1;
             $insert="INSERT INTO kolejka VALUES('".$total."','".$name."','".$id_quiz['id']."','".$datar."','".$datak."','".$klasa."','".$grupa."')";
             if($rezultat=$mysqli->query($insert) or die ($mysqli_error.__LINE__)){
 

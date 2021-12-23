@@ -4,13 +4,18 @@ include_once '../includes/header.php';
 session_start();
 if (isset($_POST['submit'])){
     $wyszukiwanie=$_POST['wyszukiwarka'];
-    $sql="SELECT * FROM questions WHERE `QuestionText` like '%$wyszukiwanie%' AND id_quiz='".$_GET['n']."'";
+    $sql="SELECT * FROM kolejka  ORDER BY id_sesji '";
     unset($_POST);
     $search=array();
     $index=0;
     $rezultat=$mysqli->query($sql);
+    while($row=$rezultat->fetch_assoc()){
+        $search[$row['id']]='szukane';
+        $index++;
+    }
+
 }else{
-    $sql="SELECT * FROM questions WHERE id_quiz='".$_GET['n']."'";
+    $sql="SELECT * FROM kolejka ORDER BY id_sesji ";
     
 }
 $rezultat=$mysqli->query($sql);
@@ -32,7 +37,7 @@ $rezultat=$mysqli->query($sql);
             transition: 0.5s;
         }
         th,td{
-            width:150px;
+            width:180px;
             text-align:center;
         }
         .id{
@@ -75,7 +80,8 @@ $rezultat=$mysqli->query($sql);
                 var pamiec=id
                 var element=document.getElementsByClassName(id);
                 for (let index = 0; index < element.length; index++) {
-                    element[index].disabled=false;
+                        element[index].disabled=false;
+
 
                     
                 }
@@ -104,20 +110,16 @@ $rezultat=$mysqli->query($sql);
             var przyciski=document.getElementById(id2);
             przyciski.innerHTML="<button  onclick='deletee("+id2+")' type='button' name="+id2+" value='edit' style='background-color: lime; border: none; '><i class='fas fa-check'></i></button><button onclick='window.location.reload()' type='submit' name="+id2+" value='DELETE' style='background-color: red; border: none;'><i class='fas fa-times-circle'></i></button>"
             if (pierwszy==0){
-                // przycisk2[0].style.display='none';
-                // przycisk2[1].innerHTML='<i class="fas fa-check"></i>';
                 pierwszy=1;
             }
             else if(pierwszy==1){
-                
-                // przycisk[1].setAttribute('name','delete');
-                // przycisk[1].value=id2;
                 location.href="delete.php?n="+id2;
                 }
             
         }
         function cancle(id3){
             var przycisk3=document.getElementsByName(id3);
+            console.log('cancle');
         }
     
     </script>
@@ -128,59 +130,37 @@ $rezultat=$mysqli->query($sql);
         <input type="submit" name='submit'value='Szukaj'>
         </form>
         <tr>
-            <th class='id'>question Number</th>
-            <th class='Login'>question</th>
-            <th class='Hasło'>Choice1</th>
-            <th class='klasa'>Choice2</th>
-            <th class='grupa'>Choice3</th>
-            <th class='Imie'>Choice4</th>
-            <th class='Nazwisko'>Choice5</th>
-            <th class='uprawnienia'>Correct</th>
-            <th class='Modyfikacja'>Modyfikacja</th>
+            <th class='id'>id</th>
+            <th class='Login'>Nazwa Quizu</th>
+            <th class='Hasło'>Data_startu</th>
+            <th class='klasa'>Data_końca</th>
+            <th class='grupa'>klasa</th>
+            <th class='Imie'>grupa<br>(3-obie grupy)</th>
+            <th class='mod'>modyfikacja</th>
         </tr>
         
-    
         <?php
         $ile=1;
             while($row=$rezultat->fetch_assoc()){
-                echo "<form method='post' action='save_change.php'><tr><td class='id'>".$row['QuestionNumber']."</td>
-                <td><input class='".$row['QuestionNumber']."' name='login".$row['QuestionNumber']."' value='".$row['QuestionText']."'disabled></td>";
-                $sql2="SELECT * FROM choices WHERE id_quiz='".$_GET['n']."' AND 	questionNumber='".$row['QuestionNumber']."'";
-                $rezultat2=$mysqli->query($sql2);
-                $totalcorrect=1;
-                $ilechice=$rezultat2->num_rows;
-                $ustawione=false;
-                // echo $ilechice;
-                $ile=1;
-                while($row2=$rezultat2->fetch_assoc()){
-                        echo "<td><input type='text' class='".$row['QuestionNumber']."' name='choice".$ile."' value='".$row2['choiceText']."'disabled></td>";
-                    
-                    
-                    
-                    if ($row2['isCorrect']==1 && $ustawione!=true){
-
-                        $correct=$totalcorrect;
-                        $ustawione=true;
-                    }
-                    else{
-
-                        $totalcorrect++;
-                    }
-                    $ile++;
-                }
-                for ($i=0; $i < 5-$ilechice ; $i++) { 
-                    echo "<td><input class='".$row['QuestionNumber']."' value='-' disabled></td>";
-                }
-                echo "<td><input class='".$row['QuestionNumber']."' name='quest_num".$row['QuestionNumber']."' value='".$correct."' type='number' min='1' max='5' disabled></td>
-                <td  class='Modyfikacja' QuestionNumber='".$row['QuestionNumber']."'><div ><button  onclick='change(".$row['QuestionNumber'].")' type='button' name=".$row['QuestionNumber']." value='edit' style='background-color: lightblue; border: none; '><i class='fas fa-pen' ></i></button></form>
-                <button onclick='deletee(".$row['QuestionNumber'].")' type='button' name=".$row['QuestionNumber']." value='DELETE' style='background-color: red; border: none;'><i class='fas fa-trash-alt'></i></button><div></td></tr>";
+                echo "<form method='post' action='change.php'><tr><td class='id'>".$ile."<input type='hidden' name='id-s' value='".$row['id_sesji']."'</td>
+                <td><input list='name-quiz' class='".$row['id_sesji']."' name='name".$row['id_sesji']."' value='".$row['name']."'disabled></td>
+                <td><input  class='".$row['id_sesji']."' name='data-s".$row['id_sesji']."' value='".$row['data_start']."'disabled></td>
+                <td><input class='".$row['id_sesji']."' name='data-k".$row['id_sesji']."' value='".$row['data_koniec']."'disabled></td>
+                <td><input class='".$row['id_sesji']."' name='klasa".$row['id_sesji']."' value='".$row['klasa']."'disabled></td>
+                <td><input type='number' class='".$row['id_sesji']."' name='grupa".$row['id_sesji']."' value='".$row['grupa']."'disabled min='1' max='3'></td>
+                <td  class='Modyfikacja' id_sesji='".$row['id_sesji']."'><div ><button  onclick='change(".$row['id_sesji'].")' type='button' name=".$row['id_sesji']." value='edit' style='background-color: lightblue; border: none; '><i class='fas fa-pen' ></i></button></form>
+                <button onclick='deletee(".$row['id_sesji'].")' type='button' name=".$row['id_sesji']." value='DELETE' style='background-color: red; border: none;'><i class='fas fa-trash-alt'></i></button><div></td></tr>";
                 $ile++;
             }
-            echo "<form method='post' action='../pytania/dashboard.php'><tr><td class='id'>".$ile."</td><input type='hidden' name='id_quiz' value='".$_GET['n']."'><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                <td  class='Modyfikacja' id='".$_GET['n']."'><div ><button  onclick='change(".$_GET['n'].")' type='submit'  style='background-color: lime; border: none; '><i class='fas fa-plus'></i></button></form></tr>";
-
-        ?>
-        <a type='submit' value='zapisz' href="modify_quiz.php">back to menu<a>
+    
+       ?><datalist id="name-quiz"><?php
+    $sql="SELECT `name` FROM quizy WHERE id_n='".$_SESSION['user-id']."'";
+    $rezultat=$mysqli->query($sql);
+    while($row=$rezultat->fetch_assoc()){
+        echo "<option value='".$row['name']."'>";
+    }?>
+  </datalist> 
+        <a type='submit' value='zapisz' href="../index.php">back to menu<a>
     
     </table>
 </body>
