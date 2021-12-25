@@ -1,31 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@stego20 
-imtelligent9190
-/
-quiz-tako
-Public
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-quiz-tako/user_options.php /
-@Adrianek2003
-Adrianek2003 update
-Latest commit 0fa320b 9 hours ago
- History
- 1 contributor
-169 lines (145 sloc)  6.87 KB
-   
 <!DOCTYPE html>
 <html lang="en">
 <head>
