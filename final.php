@@ -1,6 +1,5 @@
 <?php include_once 'includes/header.php'; ?>
-<?php session_start(); 
-print_r($_SESSION['zle']);?>
+<?php session_start(); ?>
 <main>
     <div class="container">
     <h1>You are done</h1>
