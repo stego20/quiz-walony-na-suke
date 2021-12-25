@@ -46,6 +46,9 @@ $rezultat=$mysqli->query($sql);
             transition:0.6s;
             transform:rotate(0deg);
         }
+        h1{
+            cursor: default;
+        }
     </style>
 </head>
 <body>

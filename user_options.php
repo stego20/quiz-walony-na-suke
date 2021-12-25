@@ -1,3 +1,31 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@stego20 
+imtelligent9190
+/
+quiz-tako
+Public
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+quiz-tako/user_options.php /
+@Adrianek2003
+Adrianek2003 update
+Latest commit 0fa320b 9 hours ago
+ History
+ 1 contributor
+169 lines (145 sloc)  6.87 KB
+   
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,6 +65,20 @@ $quiz2 = array(
     "score" => 84,
 );
 
+$quiz3 = array(
+    "name" => "Polski",
+    "maxpoint" => 28,
+    "score" => 12,
+);
+
+$quiz4 = array(
+    "name" => "Niemiecki",
+    "maxpoint" => 60,
+    "score" => 57,
+);
+
+$tests = array();
+array_push($tests, $quiz1, $quiz2, $quiz3, $quiz4);
 
 ?>
 
@@ -55,16 +97,20 @@ $quiz2 = array(
     <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
             <ul class="list-group">
-                <li class="list-group-item"><?php echo($quiz1["name"]) ?></li>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: <?php echo($quiz1["score"]/$quiz1["maxpoint"]*100) ?>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><?php echo($quiz1["score"]/$quiz1["maxpoint"]*100) ?>%</div>
-                </div>
-                <li class="list-group-item"><?php echo($quiz2["name"]) ?></li>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: <?php echo($quiz2["score"]/$quiz2["maxpoint"]*100)?>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><?php echo($quiz2["score"]/$quiz2["maxpoint"]*100) ?>%</div>
-                </div>
+                    <?php
+                    for ($i=0; $i < sizeof($tests); $i++) 
+                    { 
+                        $procent = number_format($tests[$i]["score"]/$tests[$i]["maxpoint"]*100, 2);
+                        echo("
+                        <li class='list-group-item'>{$tests[$i]["name"]}</li>
+                        <div class='progress'>
+                            <div class='progress-bar' role='progressbar' style='width: {$procent}%;' aria-valuenow='25' aria-valuemin='0' aria-valuemax='100'>{$procent}%</div>
+                        </div>
+                        ");
+                    }
+                    ?>
             </ul>            
-        </div>
+        </div>        
         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
             <form action="user_options.php" method="POST">
                 <div class="accordion-item">
