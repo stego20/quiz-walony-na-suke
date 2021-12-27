@@ -6,12 +6,7 @@ include_once 'includes/header.php'; ?>
 <?php include_once 'db/connect.php'; ?>
 
 
-<?php session_start();
-if (!isset($_SESSION['zle'])){
-   $_SESSION['zle']=array(); 
-   array_pop($_SESSION['zle']);
-} 
-?>
+<?php session_start(); ?>
 
 <?php
 if (!isset($_SESSION['score'])) {
@@ -48,16 +43,11 @@ $end = $selectChoice == '1';
 if($end) {
     $_SESSION['score']++;
 
-}else{
-    $quest=$_POST['QuestionText'];
-    $zle=array($number,$quest,$selectChoice);
-    array_push($_SESSION['zle'],$zle);
 }
 if($total == $number){
-    header("Location: wyniki/save_score.php?sciagal=".$_POST['sciagal']);
+    header("Location: final.php");
 }
 else{
-    
     header("Location: question.php?n=".$next);
 }
 

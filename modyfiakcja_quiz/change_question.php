@@ -4,7 +4,7 @@ include_once '../includes/header.php';
 session_start();
 if (isset($_POST['submit'])){
     $wyszukiwanie=$_POST['wyszukiwarka'];
-    $sql="SELECT * FROM questions WHERE `QuestionText` like '%$wyszukiwanie%' AND id_quiz='".$_GET['n']."'";
+    $sql="SELECT * FROM question WHERE `name` like '%$wyszukiwanie%' AND id_n='".$_SESSION['user-id']."' ";
     unset($_POST);
     $search=array();
     $index=0;
@@ -118,6 +118,7 @@ $rezultat=$mysqli->query($sql);
         }
         function cancle(id3){
             var przycisk3=document.getElementsByName(id3);
+            console.log('cancle');
         }
     
     </script>
@@ -147,40 +148,34 @@ $rezultat=$mysqli->query($sql);
                 <td><input class='".$row['QuestionNumber']."' name='login".$row['QuestionNumber']."' value='".$row['QuestionText']."'disabled></td>";
                 $sql2="SELECT * FROM choices WHERE id_quiz='".$_GET['n']."' AND 	questionNumber='".$row['QuestionNumber']."'";
                 $rezultat2=$mysqli->query($sql2);
-                $totalcorrect=1;
+                $totalcorrect=0;
                 $ilechice=$rezultat2->num_rows;
-                $ustawione=false;
-                // echo $ilechice;
-                $ile=1;
+                echo $ilechice;
                 while($row2=$rezultat2->fetch_assoc()){
-                        echo "<td><input type='text' class='".$row['QuestionNumber']."' name='choice".$ile."' value='".$row2['choiceText']."'disabled></td>";
+                        echo "<td><input type='text' class='".$row['QuestionNumber']."' name='choice".$row['QuestionNumber']."' value='".$row2['choiceText']."'disabled></td>";
                     
                     
                     
-                    if ($row2['isCorrect']==1 && $ustawione!=true){
-
+                    if ($row2['isCorrect']==1){
                         $correct=$totalcorrect;
-                        $ustawione=true;
                     }
                     else{
-
                         $totalcorrect++;
                     }
-                    $ile++;
                 }
                 for ($i=0; $i < 5-$ilechice ; $i++) { 
                     echo "<td><input class='".$row['QuestionNumber']."' value='-' disabled></td>";
                 }
-                echo "<td><input class='".$row['QuestionNumber']."' name='quest_num".$row['QuestionNumber']."' value='".$correct."' type='number' min='1' max='5' disabled></td>
+                echo "<td><input class='".$row['QuestionNumber']."' name='admin".$row['QuestionNumber']."' value='".$totalcorrect."' type='number' min='1' max='5' disabled></td>
                 <td  class='Modyfikacja' QuestionNumber='".$row['QuestionNumber']."'><div ><button  onclick='change(".$row['QuestionNumber'].")' type='button' name=".$row['QuestionNumber']." value='edit' style='background-color: lightblue; border: none; '><i class='fas fa-pen' ></i></button></form>
                 <button onclick='deletee(".$row['QuestionNumber'].")' type='button' name=".$row['QuestionNumber']." value='DELETE' style='background-color: red; border: none;'><i class='fas fa-trash-alt'></i></button><div></td></tr>";
                 $ile++;
             }
             echo "<form method='post' action='../pytania/dashboard.php'><tr><td class='id'>".$ile."</td><input type='hidden' name='id_quiz' value='".$_GET['n']."'><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                <td  class='Modyfikacja' id='".$_GET['n']."'><div ><button  onclick='change(".$_GET['n'].")' type='submit'  style='background-color: lime; border: none; '><i class='fas fa-plus'></i></button></form></tr>";
+                <td  class='Modyfikacja' id='".$row['id']."'><div ><button  onclick='change(".$row['id'].")' type='submit'  style='background-color: lime; border: none; '><i class='fas fa-plus'></i></button></form></tr>";
 
         ?>
-        <a type='submit' value='zapisz' href="modify_quiz.php">back to menu<a>
+        <a type='submit' value='zapisz' href="../index.php">back to menu<a>
     
     </table>
 </body>

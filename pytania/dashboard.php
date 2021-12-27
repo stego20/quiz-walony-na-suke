@@ -2,6 +2,7 @@
 include_once '../includes/header.php';
 include_once '../db/connect.php';
 session_start();
+
 if (isset($_POST['id_quiz'])){
     $_SESSION['id']=$_POST['id_quiz'];
     unset($_POST['id_quiz']);

@@ -15,8 +15,10 @@ else if(isset($_POST['submit'])){
         $total=$rezultat->num_rows;
         if($total==1){
             $wiersz=$rezultat->fetch_assoc();
-            
-            
+            $_SESSION['user']=$wiersz['imie']." ".$wiersz['nazwisko'];
+            $_SESSION['uprawinienia']=$wiersz['admin'];
+            $_SESSION['klasa']=$wiersz['klasa'];
+            $_SESSION['grupa']=$wiersz['grupa'];
             $_SESSION['user-id']=$wiersz['id'];
             header('Location: ../');
         }

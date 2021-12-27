@@ -22,37 +22,3 @@ img
     id int(100) NOT NULL,
     imgpath varchar(200)
 
-CREATE TABLE `kolejka` (
-  `id_sesji` int(20) NOT NULL,
-  `name` text NOT NULL,
-  `id_quiz` int(11) NOT NULL,
-  `data_start` datetime NOT NULL,
-  `data_koniec` datetime NOT NULL,
-  `klasa` text NOT NULL,
-  `grupa` int(1) NOT NULL
-)
-CREATE TABLE `konta` (
-  `id` int(11) NOT NULL,
-  `login` text NOT NULL,
-  `haslo` text NOT NULL,
-  `klasa` varchar(2) NOT NULL,
-  `grupa` int(11) NOT NULL,
-  `imie` text NOT NULL,
-  `nazwisko` text NOT NULL,
-  `admin` int(1) NOT NULL
-) 
-CREATE TABLE `quizy` (
-  `id` int(11) NOT NULL,
-  `name` text NOT NULL,
-  `id_n` int(11) NOT NULL
-)
-
-CREATE TABLE `wyniki` (
-  `id_sesji` int(11) NOT NULL,
-  `imie_i_nazwisko` text NOT NULL,
-  `id_u` int(11) NOT NULL,
-  `poprawne` int(11) NOT NULL,
-  `niepoprawne` text NOT NULL,
-  `total_question` int(11) NOT NULL,
-  `sciągał` int(11) NOT NULL
-)

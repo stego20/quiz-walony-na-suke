@@ -3,12 +3,7 @@
     include_once 'includes/header.php';
     session_start();
     unset ($_SESSION['ile']);
-    $_SESSION['id_sesji']=$_POST['quiz_id'];
-    $select="SELECT id_quiz FROM kolejka WHERE `id_sesji`='".$_SESSION['id_sesji']."'";
-    $rezultat=$mysqli->query($select);
-    $wiersz=$rezultat->fetch_assoc();
-    $id_quiz=$wiersz['id_quiz'];
-    $_SESSION['id_quiz_gra']=$id_quiz;
+    $_SESSION['id_quiz_gra']=$_POST['quiz_id'];//tu
     unset($_SESSION['blad_add']);
     unset($_SESSION['score']);
     unset($_SESSION['id']);
@@ -21,12 +16,12 @@
 
 
 <?php
-$query="SELECT * FROM quizy Where id='".$id_quiz."'";
+$query="SELECT * FROM quizy Where id='".$_POST['quiz_id']."'";
 $results= $mysqli->query($query) or die($mysqli_error.__LINE__);
 $quiz=$results->fetch_assoc();
 
 
-$select="SELECT * FROM questions WHERE id_quiz='".$id_quiz."'";
+$select="SELECT * FROM questions WHERE id_quiz='".$_POST['quiz_id']."'";
 $rezultat=$mysqli->query($select);
 $total=$rezultat->num_rows;
 ?>
@@ -50,7 +45,7 @@ $total=$rezultat->num_rows;
     <li><strong> Estimated time: </strong><?php echo $total * 0.5; ?> Minutes </li>
 
 </ul>
-<a onclick="StartTimer()" href="question.php?n=1" class="btn btn-primary">Start Quiz</a>
+<a onclick="StartTimer()" href="question.php?n=1" class="btn btn-primary">Start Quiz</a>//
 <!-- Needed -->
 </div>
 <?php
