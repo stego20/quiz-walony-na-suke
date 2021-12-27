@@ -3,20 +3,23 @@
 include_once 'includes/header.php';
 include_once 'db/connect.php';
 session_start();
-
+print_r($_SESSION);
 $query="SELECT * FROM questions WHERE id_quiz='".$_SESSION['id_quiz_gra']."'";
 $results= $mysqli->query($query) or die($mysqli_error.__LINE__);
 $total=$results->num_rows;
 
 $number = (int)$_GET['n'];
+if(!isset($_SESSION['test'])){
+    $_SESSION['test']=0;
+}
 
 if($number==1){($_SESSION)['score']=0;}
     
-$query = "SELECT * FROM questions WHERE QuestionNumber = $number AND id_quiz='".$_SESSION['id_quiz_gra']."'";
+$query = "SELECT * FROM questions WHERE QuestionNumber = '".$number."' AND id_quiz='".$_SESSION['id_quiz_gra']."'";
 $result= $mysqli->query($query) or die($mysqli_error.__LINE__);
 $question=$result->fetch_assoc();
 
-$query = "SELECT * FROM choices WHERE questionNumber = $number AND id_quiz='".$_SESSION['id_quiz_gra']."'";
+$query = "SELECT * FROM choices WHERE questionNumber = '".$number."' AND id_quiz='".$_SESSION['id_quiz_gra']."'";
 $choices = $mysqli -> query($query) or die ($mysqli-> error.__LINE__);
 
 //Furtka na wybór timera zależnie od typu Quizu
@@ -51,6 +54,8 @@ elseif ($decy == 1)
             </ul>
             <input id="NextQuest" type="submit" value="submit" class="btn btn-success"/>
             <input type="hidden" name="number" value="<?php echo $number;?>" />
+            <input type="hidden" id='sciagal' name="sciagal" value="<?php echo $number;?>" />
+            <input type="hidden" name="QuestionText" value="<?php echo $question['QuestionText'];?>" />
         </form>
     </div>
 </main>
@@ -71,6 +76,8 @@ elseif ($decy == 1)
 
 <script>
   var controller = 0;
+  var sciagal=0;
+  let button=document.getElementById('sciagal');
   $( "html" )
     .mouseenter(function() 
     {})
@@ -79,10 +86,11 @@ elseif ($decy == 1)
       controller = controller+1;
       if (controller >= 3) 
       {
+          sciagal++;
+            
+        button.value=sciagal;
           alert("Jebać kapusi");
-          controller = 0;
-        // Dodaje rekord 
-        // let order = "< !!!SPACJA!!! ?php if(mysqli_query($conn, $sql)) {} !!!ENTER!!!mysqli_close($conn);?>";
+          controller = 0;            
       }
     });
 </script> 

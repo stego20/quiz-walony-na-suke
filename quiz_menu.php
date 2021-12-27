@@ -3,7 +3,7 @@
     include_once 'includes/header.php';
     session_start();
     unset ($_SESSION['ile']);
-    $_SESSION['id_quiz_gra']=$_POST['quiz_id'];
+    $_SESSION['id_quiz_gra']=$_POST['quiz_id'];//tu
     unset($_SESSION['blad_add']);
     unset($_SESSION['score']);
     unset($_SESSION['id']);
@@ -45,7 +45,7 @@ $total=$rezultat->num_rows;
     <li><strong> Estimated time: </strong><?php echo $total * 0.5; ?> Minutes </li>
 
 </ul>
-<a onclick="StartTimer()" href="question.php?n=1" class="btn btn-primary">Start Quiz</a>
+<a onclick="StartTimer()" href="question.php?n=1" class="btn btn-primary">Start Quiz</a>//
 <!-- Needed -->
 </div>
 <?php
