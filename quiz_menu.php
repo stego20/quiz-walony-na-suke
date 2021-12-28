@@ -3,7 +3,11 @@
     include_once 'includes/header.php';
     session_start();
     unset ($_SESSION['ile']);
+
+    $_SESSION['id_sesji']=$_POST['quiz_id'];//tu
+
     $_SESSION['id_quiz_gra']=$_POST['quiz_id'];//tu
+
     unset($_SESSION['blad_add']);
     unset($_SESSION['score']);
     unset($_SESSION['id']);
@@ -13,7 +17,7 @@
     $_SESSION["oper"]=0;
     $_SESSION["total"]=0;
     $_SESSION["wyb"]=array();
-    
+
 ?>
 
 
@@ -21,16 +25,20 @@
 
 
 <?php
-$query="SELECT * FROM quizy Where id='".$_POST['quiz_id']."'";
+$query="SELECT * FROM kolejka Where id_sesji='".$_POST['quiz_id']."'";
 $results= $mysqli->query($query) or die($mysqli_error.__LINE__);
 $quiz=$results->fetch_assoc();
+$_SESSION['id_quiz_gra']=$quiz['id_quiz'];
 
-
-$select="SELECT * FROM questions WHERE id_quiz='".$_POST['quiz_id']."'";
+$selectquiz="SELECT * FROM quizy WHERE id='".$quiz['id_quiz']."'";
+$results2= $mysqli->query($query) or die($mysqli_error.__LINE__);
+$quiz2=$results2->fetch_assoc();
+$select="SELECT * FROM questions WHERE id_quiz='".$quiz['id_quiz']."'";
 $rezultat=$mysqli->query($select);
 $total=$rezultat->num_rows;
 
-$query = "SELECT QuestionNumber, QuestionText, imgpath FROM `questions` WHERE id_quiz='".$_POST['quiz_id']."'";
+$query = "SELECT QuestionNumber, QuestionText, imgpath FROM `questions` WHERE id_quiz='".$quiz['id_quiz']."'";
+
 $run = $mysqli->query($query);
 foreach ($run as $key) {
     array_push($_SESSION["pytania"],$key);
@@ -39,13 +47,17 @@ foreach ($run as $key) {
 
 
 
-$query = "SELECT questionNumber,isCorrect, choiceText FROM `choices` WHERE id_quiz='".$_POST['quiz_id']."'";
+
+$query = "SELECT questionNumber,isCorrect, choiceText FROM `choices` WHERE id_quiz='".$quiz['id_quiz']."'";
+
 $run = $mysqli->query($query);
 foreach ($run as $key) {
     array_push($_SESSION["odp"],$key);
 
 }
-$query="SELECT * FROM questions WHERE id_quiz='".$_SESSION['id_quiz_gra']."'";
+
+$query="SELECT * FROM questions WHERE id_quiz='".$quiz['id_quiz']."'";
+
 $results= $mysqli->query($query) or die($mysqli_error.__LINE__);
 $_SESSION["total"]=$results->num_rows;
 
@@ -55,7 +67,7 @@ $_SESSION["total"]=$results->num_rows;
 <div class="container">
 <header>
     <div class="container">
-        <h1 id="demo"><?php echo $quiz['name']; ?></h1>
+        <h1 id="demo"><?php echo $quiz2['name']; ?></h1>
     </div>
 </header>
 

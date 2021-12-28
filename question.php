@@ -57,7 +57,9 @@ $_SESSION["wyb"]=$choices;
     <div class="container">
         <div class="current">Question <?php echo $_SESSION["oper"]+1 //nr pyt;?> of <?php echo $_SESSION["total"] ;?> </div>
         <p class="question"><?php echo $qtext["QuestionText"];?> </p>
+
         <div><?php //tu będzie kiedyś zdjęcie?></div>
+
         <form action="process.php" method="post">
             <ul class="choices">
                 <?php
