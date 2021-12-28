@@ -10,7 +10,9 @@
     // print_r($_SESSION);
     $_SESSION["pytania"]=array();
     $_SESSION["odp"]=array();
-    $_SESSION["oper"]=0
+    $_SESSION["oper"]=0;
+    $_SESSION["total"]=0;
+    $_SESSION["wyb"]=array();
     
 ?>
 
@@ -43,6 +45,10 @@ foreach ($run as $key) {
     array_push($_SESSION["odp"],$key);
 
 }
+$query="SELECT * FROM questions WHERE id_quiz='".$_SESSION['id_quiz_gra']."'";
+$results= $mysqli->query($query) or die($mysqli_error.__LINE__);
+$_SESSION["total"]=$results->num_rows;
+
 // print_r($_SESSION["odp"]);
 ?>
 
