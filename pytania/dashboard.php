@@ -98,6 +98,7 @@ $next = $total+1;
             </p>
             <input type="submit" class="btn btn-primary" name="submit" value="Submit">
             <a href="../index.php" class="btn btn-primary">Back</a>
+            <a href="gettxt.php" class="btn btn-primary">to txt</a>
         </form>
     </div>
 </mian>
