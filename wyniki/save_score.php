@@ -11,5 +11,5 @@ $ile=$_GET['sciagal'];
 $insert="INSERT INTO wyniki VALUES('".$_SESSION['id_sesji']."','".$_SESSION['user']."','".$_SESSION['user-id']."','".$_SESSION['score']."','".serialize($_SESSION['zle'])."','".$total."','".$ile."')";
 $result2= $mysqli->query($insert) or die($mysqli_error.__LINE__);
 $total=$result->num_rows;
-// header("Location: ../final.php");
+header("Location: ../final.php");
 ?>

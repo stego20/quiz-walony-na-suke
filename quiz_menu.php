@@ -3,12 +3,17 @@
     include_once 'includes/header.php';
     session_start();
     unset ($_SESSION['ile']);
-    $_SESSION['id_quiz_gra']=$_POST['quiz_id'];//tu
+    $_SESSION['id_sesji']=$_POST['quiz_id'];//tu
     unset($_SESSION['blad_add']);
     unset($_SESSION['score']);
     unset($_SESSION['id']);
-    print_r($_SESSION);
-    
+    // print_r($_SESSION);
+    $_SESSION["pytania"]=array();
+    $_SESSION["odp"]=array();
+    $_SESSION["oper"]=0;
+    $_SESSION["total"]=0;
+    $_SESSION["wyb"]=array();
+    print_r($_POST);
 ?>
 
 
@@ -16,20 +21,44 @@
 
 
 <?php
-$query="SELECT * FROM quizy Where id='".$_POST['quiz_id']."'";
+$query="SELECT * FROM kolejka Where id_sesji='".$_POST['quiz_id']."'";
 $results= $mysqli->query($query) or die($mysqli_error.__LINE__);
 $quiz=$results->fetch_assoc();
+$_SESSION['id_quiz_gra']=$quiz['id_quiz'];
 
-
-$select="SELECT * FROM questions WHERE id_quiz='".$_POST['quiz_id']."'";
+$selectquiz="SELECT * FROM quizy WHERE id='".$quiz['id_quiz']."'";
+$results2= $mysqli->query($query) or die($mysqli_error.__LINE__);
+$quiz2=$results2->fetch_assoc();
+$select="SELECT * FROM questions WHERE id_quiz='".$quiz['id_quiz']."'";
 $rezultat=$mysqli->query($select);
 $total=$rezultat->num_rows;
+
+$query = "SELECT QuestionNumber, QuestionText, imgpath FROM `questions` WHERE id_quiz='".$quiz['id_quiz']."'";
+$run = $mysqli->query($query);
+foreach ($run as $key) {
+    array_push($_SESSION["pytania"],$key);
+
+}
+
+
+
+$query = "SELECT questionNumber,isCorrect, choiceText FROM `choices` WHERE id_quiz='".$quiz['id_quiz']."'";
+$run = $mysqli->query($query);
+foreach ($run as $key) {
+    array_push($_SESSION["odp"],$key);
+
+}
+$query="SELECT * FROM questions WHERE id_quiz='".$quiz['id_quiz']."'";
+$results= $mysqli->query($query) or die($mysqli_error.__LINE__);
+$_SESSION["total"]=$results->num_rows;
+
+// print_r($_SESSION["odp"]);
 ?>
 
 <div class="container">
 <header>
     <div class="container">
-        <h1 id="demo"><?php echo $quiz['name']; ?></h1>
+        <h1 id="demo"><?php echo $quiz2['name']; ?></h1>
     </div>
 </header>
 
@@ -45,7 +74,7 @@ $total=$rezultat->num_rows;
     <li><strong> Estimated time: </strong><?php echo $total * 0.5; ?> Minutes </li>
 
 </ul>
-<a onclick="StartTimer()" href="question.php?n=1" class="btn btn-primary">Start Quiz</a>//
+<a onclick="StartTimer()" href="question.php" class="btn btn-primary">Start Quiz</a>
 <!-- Needed -->
 </div>
 <?php

@@ -3,24 +3,21 @@
 include_once 'includes/header.php';
 include_once 'db/connect.php';
 session_start();
-print_r($_SESSION);
-$query="SELECT * FROM questions WHERE id_quiz='".$_SESSION['id_quiz_gra']."'";
-$results= $mysqli->query($query) or die($mysqli_error.__LINE__);
-$total=$results->num_rows;
+// print_r($_SESSION);
+echo($_SESSION["total"]);
+echo($_SESSION["oper"]);
 
-$number = (int)$_GET['n'];
+
 if(!isset($_SESSION['test'])){
     $_SESSION['test']=0;
 }
 
-if($number==1){($_SESSION)['score']=0;}
+if($_SESSION["oper"]==0){
+    ($_SESSION)['score']=0;
+}
     
-$query = "SELECT * FROM questions WHERE QuestionNumber = '".$number."' AND id_quiz='".$_SESSION['id_quiz_gra']."'";
-$result= $mysqli->query($query) or die($mysqli_error.__LINE__);
-$question=$result->fetch_assoc();
 
-$query = "SELECT * FROM choices WHERE questionNumber = '".$number."' AND id_quiz='".$_SESSION['id_quiz_gra']."'";
-$choices = $mysqli -> query($query) or die ($mysqli-> error.__LINE__);
+$choices=array();
 
 //Furtka na wybór timera zależnie od typu Quizu
 $decy = 0;
@@ -33,8 +30,22 @@ elseif ($decy == 1)
     echo('<script src="js/QuestionTimer.js"></script>');
 }
 
-?>
+$qtext = $_SESSION["pytania"][$_SESSION["oper"]];
 
+foreach($_SESSION["odp"] as $key){
+    $x = $_SESSION["oper"]+1;
+    if($key["questionNumber"]==$x){
+        array_push($choices,$key);
+        array_shift($_SESSION["odp"]);
+    }
+    if($key["questionNumber"]>$x){
+        break;
+    }
+    
+}
+$_SESSION["wyb"]=$choices;
+?>
+<!-- wyświetlanie na stronie -->
 <header>
     <div class="container">
         <h1> PHP Quizer</h1>
@@ -44,18 +55,19 @@ elseif ($decy == 1)
 
 <main>
     <div class="container">
-        <div class="current">Question <?php echo $question['QuestionNumber']?> of <?php echo $total; ?> </div>
-        <p class="question"><?php echo $question['QuestionText'];?> </p>
+        <div class="current">Question <?php echo $_SESSION["oper"]+1 //nr pyt;?> of <?php echo $_SESSION["total"] ;?> </div>
+        <p class="question"><?php echo $qtext["QuestionText"];?> </p>
         <form action="process.php" method="post">
             <ul class="choices">
-                <?php while($row = $choices-> fetch_assoc()): ?>
-                <li><input type="radio" name="choice" value="<?php echo $row['isCorrect'];?>"><?php echo $row['choiceText'];?></li>
-                <?php endwhile; ?>
+                <?php
+                    foreach($choices as $key){?>
+                        <li><input type="radio" name="choice" value="<?php echo $key['choiceText'];?>"><?php echo $key['choiceText'];?></li>
+                <?php }; ?>
             </ul>
             <input id="NextQuest" type="submit" value="submit" class="btn btn-success"/>
-            <input type="hidden" name="number" value="<?php echo $number;?>" />
-            <input type="hidden" id='sciagal' name="sciagal" value="<?php echo $number;?>" />
-            <input type="hidden" name="QuestionText" value="<?php echo $question['QuestionText'];?>" />
+            <input type="hidden" name="number" value="<?php echo $_SESSION["oper"]+1;?>" />
+            <input type="hidden" id='sciagal' name="sciagal" value="<?php echo $_SESSION["oper"]+1;?>" />
+            <input type="hidden" name="QuestionText" value="<?php echo $qtext["QuestionText"];?>" />
         </form>
     </div>
 </main>

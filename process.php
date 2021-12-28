@@ -9,48 +9,48 @@ include_once 'includes/header.php'; ?>
 <?php session_start(); ?>
 
 <?php
+
+
+if (!isset($_SESSION['zle'])){
+   $_SESSION['zle']=array(); 
+   array_pop($_SESSION['zle']);
+} 
+
 if (!isset($_SESSION['score'])) {
     $_SESSION['$score'] = 0;
 
 }
 
-if ($_POST) {
-    $number = $_POST['number'];
-    
-    $selectChoice = $_POST['choice'];
-    
-    $next = $number + 1;
+$wybrany = $_POST["choice"]; // wybrany jest tu a ludzi w pizdu  
 
+
+// get correct
+foreach($_SESSION["wyb"] as $key){
+    if ($key["choiceText"]==$wybrany){
+        $dobra  = $key["isCorrect"];
+    }
 }
-$query = "SELECT * FROM questions WHERE id_quiz='".$_SESSION['id_quiz_gra']."'";
-
-$result= $mysqli->query($query) or die($mysqli_error.__LINE__);
-$total=$result->num_rows;
-
-
-$query = "SELECT * FROM choices WHERE questionNumber = $number AND isCorrect = 1";
-
-
-$result = $mysqli-> query($query) or die ($mysqli->error.__LINE__);
-
-$row = $result->fetch_assoc();
-
-
-$correctChoice = $row['id'];
-
-$end = $selectChoice == '1';
-
+$end = $dobra == 1;
 if($end) {
     $_SESSION['score']++;
 
-}
-if($total == $number){
-    header("Location: final.php");
-}
-else{
-    header("Location: question.php?n=".$next);
+}else{
+    $zle=array($number,$wybrany,$selectChoice);
+    array_push($_SESSION['zle'],$zle);
 }
 
+if($_SESSION["total"] == $_SESSION['oper']+1){
+    unset($_SESSION["pytania"]);
+    unset($_SESSION["odp"]);
+    unset($_SESSION["oper"]);
+    unset($_SESSION["total"]);
+    unset($_SESSION["wyb"]);
+    header("Location: wyniki/save_score.php?sciagal=".$_POST['sciagal']);
+}
+else{
+    $_SESSION["oper"]+=1;
+    header("Location: question.php?n=".$next);
+}
 
 
 ?>

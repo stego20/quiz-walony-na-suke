@@ -6,7 +6,9 @@
     unset($_SESSION['blad_add']);
     unset($_SESSION['score']);
     unset($_SESSION['id']);
-    print_r($_SESSION);
+    unset($_SESSION['id_sesji']);
+    unset($_SESSION['id_quiz_gra']);
+    unset($_SESSION['zle']);
 ?>
 
 
@@ -16,14 +18,24 @@
 
 
 <?php
-  if (!isset($_SESSION['user'])){echo '<a href="logowanie/logowanie.php">Zaloguj się</a>';}
-    else{echo 'Witaj: '.$_SESSION['user'].' ';}
+  if (!isset($_SESSION['user-id'])){echo '<a href="logowanie/logowanie.php">Zaloguj się</a>';}
+    else{
+      $getinfo="SELECT * FROM konta WHERE id='".$_SESSION['user-id']."'";
+    $rezultat=$mysqli->query($getinfo);
+    $wiersz=$rezultat->fetch_assoc();
+    $_SESSION['user']=$wiersz['imie']." ".$wiersz['nazwisko'];
+    $_SESSION['uprawinienia']=$wiersz['admin'];
+    $_SESSION['klasa']=$wiersz['klasa'];
+    $_SESSION['grupa']=$wiersz['grupa'];
+    echo 'Witaj: '.$_SESSION['user'].' ';}
       if(isset($_SESSION['uprawinienia'])){
         if($_SESSION['uprawinienia']=='1'){
           echo '<a href="admin/paneladmin.php">Zarządzaj Użytkownikami</a> ';
           echo '<a href="quizy/add_quiz.php">Dodaj quiz</a> ';
           echo '<a href="quizy/set_quiz.php">Zaplanuj quiz</a> ';
           echo '<a href="modyfiakcja_quiz/modify_quiz.php">Modyfikuj quizy</a> ';
+          echo '<a href="zaplanowane/dashboard-zaplanowane.php">Zaplanowane quizy</a> ';
+          echo '<a href="wyniki/wyniki.php">Wyniki quizów</a> ';
             }
             else if($_SESSION['uprawinienia']=='0'){
                }
@@ -31,17 +43,30 @@
 
 
 ?>
-<?php
-include_once 'includes/footer.php';
-?>
+
 <div class='grid'><form method='post' action='quiz_menu.php'>
 <?php
 if (isset($_SESSION['grupa']) && isset($_SESSION['klasa'])){
-  $query="SELECT * FROM kolejka WHERE data_start<='".date('Y-m-d H:i:s')."' AND data_koniec>='".date('Y-m-d H:i:s')."'AND klasa='".$_SESSION['klasa']."' AND grupa='3' OR grupa LIKE'".$_SESSION['grupa']."'    ";
+  $date=gmdate('Y-m-d H:i:s',time()+3600);
+  $aktualny = strtotime($date);
+  $query="SELECT * FROM kolejka WHERE klasa='".$_SESSION['klasa']."' AND grupa='3' OR grupa LIKE'".$_SESSION['grupa']."'";
   $results= $mysqli->query($query) or die($mysqli_error.__LINE__);
+  $wiersz2= $results->fetch_assoc();
+
+  
   if($results->num_rows!=0){
     while($row=$results->fetch_assoc()){
-      echo "<button type=submit name='quiz_id' value='".$row['id_quiz']."'>".$row['name']."</button>";
+      $query2="SELECT * FROM `wyniki` WHERE `imie_i_nazwisko`='".$_SESSION['user']."' AND `id_sesji`='".$row['id_sesji']."'";
+      $results2= $mysqli->query($query2) or die($mysqli_error.__LINE__);
+      if ($results2->num_rows==0){
+        $start= strtotime($row['data_start']);
+        $koniec= strtotime($row['data_koniec']);
+        if($start<$aktualny && $aktualny<$koniec){
+          echo "<button type=submit name='quiz_id' value='".$row['id_sesji']."'>".$row['name']."</button>";
+        }else{
+          
+        }
+      }
   }
   }
   
@@ -52,6 +77,9 @@ if (isset($_SESSION['grupa']) && isset($_SESSION['klasa'])){
 ?></form></div>
 </div>
 </main>
+<?php
+include_once 'includes/footer.php';
+?>
 
 
 

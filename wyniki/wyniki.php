@@ -78,6 +78,7 @@ $rezultat=$mysqli->query($sql);
             <th class='klasa'>Data_końca</th>
             <th class='grupa'>klasa</th>
             <th class='Imie'>grupa<br>(3-obie grupy)</th>
+            <th >ile-wyników</th>
             <th class='mod'>Sprawdź wyniki</th>
         </tr>
         
@@ -89,7 +90,11 @@ $rezultat=$mysqli->query($sql);
                 <td><input value='".$row['data_start']."'disabled></td>
                 <td><input value='".$row['data_koniec']."'disabled></td>
                 <td><input value='".$row['klasa']."'disabled></td>
-                <td><input type='number' value='".$row['grupa']."'disabled min='1' max='3'></td>
+                <td><input type='number' value='".$row['grupa']."'disabled min='1' max='3'></td>";
+                $select ="SELECT * FROM wyniki WHERE id_sesji='".$row['id_sesji']."'";
+                $ilewynikow=$mysqli->query($select);
+                $ilew=$ilewynikow->num_rows;
+                echo "<td>$ilew</td>
                 <td  class='Modyfikacja'><div ><button  onclick='change(".$row['id_sesji'].")' type='submit' ".$row['id_sesji']." name='id_sesji' value='".$row['id_sesji']."' style='background-color: lime; border: none; '><i class='far fa-list-alt'></i></button></form>
                 <div></td></tr>";
                 $ile++;
