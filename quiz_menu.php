@@ -65,7 +65,7 @@ foreach ($run as $key) {
     <li><strong> Estimated time: </strong><?php echo $total * 0.5; ?> Minutes </li>
 
 </ul>
-<a onclick="StartTimer()" href="question.php" class="btn btn-primary">Start Quiz</a>//
+<a onclick="StartTimer()" href="question.php" class="btn btn-primary">Start Quiz</a>
 <!-- Needed -->
 </div>
 <?php
