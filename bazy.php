@@ -66,4 +66,16 @@ $query = "CREATE TABLE kolejka(
 $run = $mysqli->query($query);
 
 
+$query = "CREATE TABLE `wyniki` (
+    `id_sesji` int(11) NOT NULL,
+    `imie_i_nazwisko` text NOT NULL,
+    `id_u` int(11) NOT NULL,
+    `poprawne` int(11) NOT NULL,
+    `niepoprawne` text NOT NULL,
+    `total_question` int(11) NOT NULL,
+    `sciągał` int(11) NOT NULL,
+    `data_start` time NOT NULL,
+    `data_koniec` time NOT NULL
+  )";
+  $run = $mysqli->query($query);
 ?>
