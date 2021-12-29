@@ -9,7 +9,6 @@
     unset($_SESSION['id_sesji']);
     unset($_SESSION['id_quiz_gra']);
     unset($_SESSION['zle']);
-    print_r($_SESSION)
 ?>
 
 
