@@ -2,7 +2,7 @@
 $dbHostName= "localhost";
 $dbHostUser="root";
 $dbHostPasswd="";
-$dbName="quiz";
+$dbName="";
 $mysqli = mysqli_connect($dbHostName,$dbHostUser,$dbHostPasswd,$dbName) or die("nie działa");
 $query="CREATE DATABASE IF NOT EXISTS quiz DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci;";
 $run = $mysqli->query($query);
