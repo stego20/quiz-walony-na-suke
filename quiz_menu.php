@@ -4,7 +4,6 @@
     session_start();
     unset ($_SESSION['ile']);
     unset($_SESSION['start']);
-
     $_SESSION['id_sesji']=$_POST['quiz_id'];//tu
 
     $_SESSION['id_quiz_gra']=$_POST['quiz_id'];//tu
@@ -49,20 +48,16 @@ foreach ($run as $key) {
 
 
 
-$query = "SELECT questionNumber,isCorrect, choiceText FROM `choices` WHERE id_quiz='".$quiz['id_quiz']."'";
-
+$query = "SELECT questionNumber,isCorrect, choiceText FROM `choices` WHERE id_quiz='".$quiz['id_quiz']."' ORDER BY questionNumber ";
 $run = $mysqli->query($query);
 foreach ($run as $key) {
     array_push($_SESSION["odp"],$key);
 
 }
-
 $query="SELECT * FROM questions WHERE id_quiz='".$quiz['id_quiz']."'";
 
 $results= $mysqli->query($query) or die($mysqli_error.__LINE__);
 $_SESSION["total"]=$results->num_rows;
-
-// print_r($_SESSION["odp"]);
 ?>
 
 <div class="container">
