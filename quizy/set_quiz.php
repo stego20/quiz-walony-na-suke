@@ -1,6 +1,7 @@
 <?php
 include_once '../db/connect.php';
 session_start();
+
 ?>
     <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +14,7 @@ session_start();
 </head>
 <body>
     <form method="post" action='process_set.php'>
-        Wybierz nazwe quizu: <input list='name-quiz' name="name" autocomplete="off"><br>
+        Wybierz nazwe quizu: <input list='name-quiz' name="name" autocomplete="off">
   <datalist id="name-quiz">
       <?php
     $sql="SELECT `name` FROM quizy WHERE id_n='".$_SESSION['user-id']."'";
@@ -23,11 +24,34 @@ session_start();
     }
     ?>
   </datalist>
+  <?php
+                if(isset($_SESSION['blad_set_nazwa'])){
+                    echo '<br><span style="color:red;">'.$_SESSION['blad_set_nazwa']."</span><br>";
+                    unset($_SESSION['blad_set_nazwa']);
+                }else{
+                    echo "<br>";
+                }
+            ?>
         Data-rozpoczęczia:<input type="datetime-local" name="datar"><br>
         Data-zakończenia:<input type="datetime-local" name="datak"><br>
-        Klasa:<input type="text" name='klasa' maxlength="2"><br>
+        Klasa:<input type="text" name='klasa' maxlength="2"><?php
+                if(isset($_SESSION['blad_set_klasa'])){
+                    echo '<br><span style="color:red;">'.$_SESSION['blad_set_klasa']."</span><br>";
+                    unset($_SESSION['blad_set_klasa']);
+                }else{
+                    echo "<br>";
+                }
+            ?>
         grupa: <input type="checkbox" name="1" value="1">1
-            <input type="checkbox" name="2" value="2">2 <br>
+            <input type="checkbox" name="2" value="2">2 
+            <?php
+                if(isset($_SESSION['blad_set_grupa'])){
+                    echo '<br><span style="color:red;">'.$_SESSION['blad_set_grupa']."</span><br>";
+                    unset($_SESSION['blad_set_grupa']);
+                }else{
+                    echo "<br>";
+                }
+            ?>
         <input type="submit" value="Create">
     </form></div>
 </form>

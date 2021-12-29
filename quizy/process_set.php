@@ -6,6 +6,7 @@ if (isset($_POST)){
     $datar = date('Y-m-d H:i:s ', strtotime($_POST['datar']));
     $datak = date('Y-m-d H:i:s ', strtotime($_POST['datak']));
     $klasa=$_POST['klasa'];
+    
     if (isset($_POST['1']) && isset($_POST['2'])){
         $grupa=3;
     }
@@ -15,9 +16,17 @@ if (isset($_POST)){
     else if (isset($_POST['2'])){
         $grupa=2;
     }
-    else{
-        $_SESSION['blad_add']='Nie została zanaczona żadna grupa';
-        header("Location: add_quiz.php");
+    else if (!isset($_POST['1']) and !isset($_POST['2'])) {
+        $_SESSION['blad_set_grupa']='Nie została zanaczona żadna grupa';
+        header("Location: set_quiz.php");
+    }
+    else if ($name==""){
+        $_SESSION['blad_set_nazwa']='Nie został wybrany żaden quiz';
+        header("Location: set_quiz.php");
+    }
+    else if ($klasa==''){
+        $_SESSION['blad_set_klasa']='Nie został wybrana żadna klasa';
+        header("Location: set_quiz.php");
     }
     if ($name!= '' && $klasa!= '' ){
             $search="SELECT id FROM quizy WHERE `name`='".$name."' AND `id_n`='".$_SESSION['user-id']."'";

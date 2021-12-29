@@ -7,6 +7,9 @@ session_start();
 echo($_SESSION["total"]);
 echo($_SESSION["oper"]);
 
+if(!isset($_SESSION['start'])){
+    $_SESSION['start']=gmdate('H:i:s',time()+3600);
+}
 
 if(!isset($_SESSION['test'])){
     $_SESSION['test']=0;

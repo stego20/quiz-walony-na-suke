@@ -3,6 +3,7 @@
     include_once 'includes/header.php';
     session_start();
     unset ($_SESSION['ile']);
+    unset($_SESSION['start']);
 
     $_SESSION['id_sesji']=$_POST['quiz_id'];//tu
 
@@ -37,7 +38,7 @@ $select="SELECT * FROM questions WHERE id_quiz='".$quiz['id_quiz']."'";
 $rezultat=$mysqli->query($select);
 $total=$rezultat->num_rows;
 
-$query = "SELECT QuestionNumber, QuestionText, imgpath FROM `questions` WHERE id_quiz='".$quiz['id_quiz']."'";
+$query = "SELECT QuestionNumber, QuestionText, idimg FROM `questions` WHERE id_quiz='".$quiz['id_quiz']."'";
 
 $run = $mysqli->query($query);
 foreach ($run as $key) {

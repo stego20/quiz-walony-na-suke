@@ -14,12 +14,12 @@ $data_s = date('Y-m-d H:i:s ', strtotime($data_start));
 $data_koniec = date('Y-m-d H:i:s ', strtotime($data_koniec));
 $id_sesji=$_POST['id-s'];
 unset($_POST);
-$sql="SELECT * FROM kolejka WHERE `id_sesji`='".$id_sesji."'";
+$sql="SELECT * FROM quizy WHERE `name`='".$name."'";
 $rezultat=$mysqli->query($sql); 
 $wiersz=$rezultat->fetch_assoc();
-$id_quiz=$wiersz['id_quiz'];
+$id_quiz=$wiersz['id'];
 echo gettype($data_start);
-echo $name." ".$data_start." ".$data_koniec." ".$grupa." ".$klasa." ".$id_sesji."<br>";
+echo $name." ".$id_quiz."".$data_start." ".$data_koniec." ".$grupa." ".$klasa." ".$id_sesji."<br>";
 if ($rezultat->num_rows==1){
     $delete="DELETE FROM kolejka WHERE `id_sesji`='".$id_sesji."'";
     $rezultat=$mysqli->query($delete) or die($mysqli_error.__LINE__);
@@ -27,12 +27,12 @@ if ($rezultat->num_rows==1){
     $rezultat2=$mysqli->query($update) or die ("nie");
     
     if($rezultat2){
-        header("Location: dashboard-zaplanowane.php");
+        // header("Location: dashboard-zaplanowane.php");
     }
     
 }
 else{
-    header("Location: dashboard-zaplanowane.php");
+    // header("Location: dashboard-zaplanowane.php");
 }
 
 

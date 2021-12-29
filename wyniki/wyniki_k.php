@@ -41,6 +41,7 @@ $rezultat=$mysqli->query($sql);
         }
         li{
             list-style:none;
+            width: 400px
         }
         i{
             transition:0.6s;
@@ -52,6 +53,7 @@ $rezultat=$mysqli->query($sql);
     </style>
 </head>
 <body>
+    <a href="../">back to menu</a>
     <script>
         var rotate = '0deg';
         $(document).ready(function(){
@@ -79,26 +81,38 @@ $(document).ready(function(){
         <?php
         $ile=1;
             while($row=$rezultat->fetch_assoc()){
-                $zle=unserialize($row['niepoprawne']);
-                // print_r($zle);
+
+                $zle=unserialize($row['niepoprawne']);//zaciaganie niepoprawnych
+
                 $procent=((int)$row['poprawne']/(int)$row['total_question'])*100;
-                echo "<h1 class='flip'>".$row['imie_i_nazwisko']." <span style='color:lime;'>Correct: ".$row['poprawne']."</span> <span style='color:red;'>InCorrect: ".sizeof($zle)."</span> Percent: ".$procent."% <i class='fas fa-angle-down'></i><h1>";
+                
+                echo "<h1 class='flip'>".$row['imie_i_nazwisko']." <span style='color:lime;'>Correct: ".$row['poprawne']."</span> <span style='color:red;'>InCorrect: ".sizeof($zle)."</span> Percent: ".round($procent,2)."% Start: ".$row['data_start']." End: ".$row['data_koniec']." <i class='fas fa-angle-down'></i><h1>";
+                
+                
                 $select="SELECT * FROM kolejka WHERE id_sesji='".$row['id_sesji']."'";
                 $rezultat2=$mysqli->query($select);
                 $wiersz=$rezultat2->fetch_assoc();
+
+
+                $selectquest="SELECT * FROM questions WHERE id_quiz='".$wiersz['id_quiz']."' AND QuestionNumber='".$zle[0][0]."'";
+                $quest=$mysqli->query($selectquest);
+                $questtext=$quest->fetch_assoc();
                 $ile=0;
                 for ($i=0; $i < sizeof($zle); $i++) { 
-                    echo "<div class='panel'><p>".$zle[0][1]."
+                    echo "<div class='panel'><p>".$questtext['QuestionText']."
                             <ul>";
-                        $selectchoice="SELECT * FROM choices WHERE id_quiz='".$wiersz['id_quiz']."' AND questionNumber='".$zle[0][0]."'";
-                        array_shift($zle);
+                        $selectchoice="SELECT * FROM choices WHERE id_quiz='".$wiersz['id_quiz']."' AND questionNumber='".$zle[$i][0]."'";
                         $choices=$mysqli->query($selectchoice);
                         while($choice=$choices->fetch_assoc()){
-                            if ("nie"==$choice['choiceText']){
-                                echo"<li><input type='radio' checked='true' disable >".$choice['choiceText']."</li>";
+                            // echo gettype($zle[0][1])." || ".gettype($choice['choiceText']);
+                            if ($zle[$i][1]==$choice['choiceText']){
+                                echo"<li style='background-color:#EE0000; '><input type='radio' checked='true'  >".$choice['choiceText']."</li>";
+                            }
+                            elseif($choice['isCorrect']==1){
+                                echo"<li style='background-color:lime; '><input type='radio' disabled >".$choice['choiceText']."</li>";
                             }
                             else{
-                                echo"<li><input type='radio' disabled>".$choice['choiceText']."</li>";
+                                echo"<li ><input type='radio' disabled>".$choice['choiceText']."</li>";
                             }
                             
                         }
