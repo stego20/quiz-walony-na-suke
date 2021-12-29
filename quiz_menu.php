@@ -4,6 +4,7 @@
     session_start();
     unset ($_SESSION['ile']);
     unset($_SESSION['start']);
+
     $_SESSION['id_sesji']=$_POST['quiz_id'];//tu
 
     $_SESSION['id_quiz_gra']=$_POST['quiz_id'];//tu
