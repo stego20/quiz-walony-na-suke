@@ -78,7 +78,7 @@ $rezultat=$mysqli->query($sql);
             <th class='klasa'>Data_końca</th>
             <th class='grupa'>klasa</th>
             <th class='Imie'>grupa<br>(3-obie grupy)</th>
-            <th >ile-wyników</th>
+            <th >ile_wyników</th>
             <th class='mod'>Sprawdź wyniki</th>
         </tr>
         

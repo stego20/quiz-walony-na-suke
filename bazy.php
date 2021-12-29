@@ -1,8 +1,8 @@
 <?php
-$dbHostName= "sql4.5v.pl";
-$dbHostUser="stego_quiztakov2";
-$dbHostPasswd="s0i20tl935";
-$dbName="stego_quiztakov2";
+$dbHostName= "localhost";
+$dbHostUser="root";
+$dbHostPasswd="";
+$dbName="quiz";
 $mysqli = mysqli_connect($dbHostName,$dbHostUser,$dbHostPasswd,$dbName) or die("nie działa");
 $query="CREATE DATABASE IF NOT EXISTS quiz DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci;";
 $run = $mysqli->query($query);

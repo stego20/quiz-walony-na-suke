@@ -7,6 +7,9 @@ session_start();
 echo($_SESSION["total"]);
 echo($_SESSION["oper"]);
 
+if(!isset($_SESSION['start'])){
+    $_SESSION['start']=gmdate('H:i:s',time()+3600);
+}
 
 if(!isset($_SESSION['test'])){
     $_SESSION['test']=0;
@@ -57,6 +60,9 @@ $_SESSION["wyb"]=$choices;
     <div class="container">
         <div class="current">Question <?php echo $_SESSION["oper"]+1 //nr pyt;?> of <?php echo $_SESSION["total"] ;?> </div>
         <p class="question"><?php echo $qtext["QuestionText"];?> </p>
+
+        <div><?php //tu będzie kiedyś zdjęcie?></div>
+
         <form action="process.php" method="post">
             <ul class="choices">
                 <?php

@@ -3,7 +3,11 @@
     include_once 'includes/header.php';
     session_start();
     unset ($_SESSION['ile']);
+    unset($_SESSION['start']);
     $_SESSION['id_sesji']=$_POST['quiz_id'];//tu
+
+    $_SESSION['id_quiz_gra']=$_POST['quiz_id'];//tu
+
     unset($_SESSION['blad_add']);
     unset($_SESSION['score']);
     unset($_SESSION['id']);
@@ -13,7 +17,7 @@
     $_SESSION["oper"]=0;
     $_SESSION["total"]=0;
     $_SESSION["wyb"]=array();
-    print_r($_POST);
+
 ?>
 
 
@@ -33,7 +37,8 @@ $select="SELECT * FROM questions WHERE id_quiz='".$quiz['id_quiz']."'";
 $rezultat=$mysqli->query($select);
 $total=$rezultat->num_rows;
 
-$query = "SELECT QuestionNumber, QuestionText, imgpath FROM `questions` WHERE id_quiz='".$quiz['id_quiz']."'";
+$query = "SELECT QuestionNumber, QuestionText, idimg FROM `questions` WHERE id_quiz='".$quiz['id_quiz']."'";
+
 $run = $mysqli->query($query);
 foreach ($run as $key) {
     array_push($_SESSION["pytania"],$key);
@@ -42,13 +47,17 @@ foreach ($run as $key) {
 
 
 
+
 $query = "SELECT questionNumber,isCorrect, choiceText FROM `choices` WHERE id_quiz='".$quiz['id_quiz']."'";
+
 $run = $mysqli->query($query);
 foreach ($run as $key) {
     array_push($_SESSION["odp"],$key);
 
 }
+
 $query="SELECT * FROM questions WHERE id_quiz='".$quiz['id_quiz']."'";
+
 $results= $mysqli->query($query) or die($mysqli_error.__LINE__);
 $_SESSION["total"]=$results->num_rows;
 
