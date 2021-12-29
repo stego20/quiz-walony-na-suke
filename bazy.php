@@ -22,7 +22,7 @@ $query="CREATE TABLE questions(
     id_quiz int(100) NOT NULL,
     QuestionNumber int(11)NOT NULL,
     QuestionText varchar(100)NOT NULL,
-    idimg int(100)
+    img text
 
 );";
 $run = $mysqli->query($query);
@@ -39,11 +39,7 @@ $query="CREATE TABLE konta(
 );";
 $run = $mysqli->query($query);
 
-$query = "CREATE TABLE img(
-    id int(100) NOT NULL,
-    imgpath varchar(200) NOT NULL,
-    PRIMARY KEY (id)
-)";
+
 $run = $mysqli->query($query);
 
 $query = "CREATE TABLE quizy(
