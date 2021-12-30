@@ -48,7 +48,7 @@ foreach ($run as $key) {
 
 
 
-$query = "SELECT questionNumber,isCorrect, choiceText FROM `choices` WHERE id_quiz='".$quiz['id_quiz']."' ORDER BY questionNumber ";
+$query = "SELECT questionNumber,isCorrect, choiceText FROM `choices` WHERE id_quiz='".$quiz['id_quiz']."'";
 $run = $mysqli->query($query);
 foreach ($run as $key) {
     array_push($_SESSION["odp"],$key);
