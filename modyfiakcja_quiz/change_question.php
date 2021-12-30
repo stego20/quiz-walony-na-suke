@@ -146,7 +146,7 @@ $rezultat=$mysqli->query($sql);
             while($row=$rezultat->fetch_assoc()){
                 echo "<form method='post' action='save_change.php?n=".$_GET['n']."&quest_id=".$row['QuestionNumber']."'><tr><td class='id'>".$row['QuestionNumber']."</td>
                 <td><input class='".$row['QuestionNumber']."' name='login".$row['QuestionNumber']."' value='".$row['QuestionText']."'disabled></td>";
-                $sql2="SELECT * FROM choices WHERE id_quiz='".$_GET['n']."' AND 	questionNumber='".$row['QuestionNumber']."'";
+                $sql2="SELECT * FROM choices WHERE id_quiz='".$_GET['n']."' AND     questionNumber='".$row['QuestionNumber']."'";
                 $rezultat2=$mysqli->query($sql2);
                 $totalcorrect=0;
                 $ilechice=$rezultat2->num_rows;
@@ -174,7 +174,7 @@ $rezultat=$mysqli->query($sql);
                 $ile++;
             }
             echo "<form method='post' action='../pytania/dashboard.php'><tr><td class='id'>".$ile."</td><input type='hidden' name='id_quiz' value='".$_GET['n']."'><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                <td  class='Modyfikacja' id='".$row['id']."'><div ><button  onclick='change(".$row['id'].")' type='submit'  style='background-color: lime; border: none; '><i class='fas fa-plus'></i></button></form></tr>";
+                <td  class='Modyfikacja' ><div ><button ' type='submit'  style='background-color: lime; border: none; '><i class='fas fa-plus'></i></button></form></tr>";
 
         ?>
         <a type='submit' value='zapisz' href="../index.php">back to menu<a>
