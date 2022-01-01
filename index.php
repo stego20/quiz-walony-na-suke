@@ -18,16 +18,18 @@
 
 
 <?php
-  if (!isset($_SESSION['user-id'])){echo '<a href="logowanie/logowanie.php">Zaloguj się</a>';}
-    else{
-      $getinfo="SELECT * FROM konta WHERE id='".$_SESSION['user-id']."'";
+  if (!isset($_SESSION['user-id'])){
+    echo '<a href="logowanie/logowanie.php">Zaloguj się</a>';
+  }
+  else {
+    $getinfo="SELECT * FROM konta WHERE id='".$_SESSION['user-id']."'";
     $rezultat=$mysqli->query($getinfo);
     $wiersz=$rezultat->fetch_assoc();
     $_SESSION['user']=$wiersz['imie']." ".$wiersz['nazwisko'];
     $_SESSION['uprawinienia']=$wiersz['admin'];
     $_SESSION['klasa']=$wiersz['klasa'];
     $_SESSION['grupa']=$wiersz['grupa'];
-    echo 'Witaj: '.$_SESSION['user'].' ';}
+    echo '<a href="user_control/user_options.php">Witaj: '.$_SESSION['user'].'</a> ';
       if(isset($_SESSION['uprawinienia'])){
         if($_SESSION['uprawinienia']=='1'){
           echo '<a href="admin/paneladmin.php">Zarządzaj Użytkownikami</a> ';
@@ -37,9 +39,9 @@
           echo '<a href="zaplanowane/dashboard-zaplanowane.php">Zaplanowane quizy</a> ';
           echo '<a href="wyniki/wyniki.php">Wyniki quizów</a> ';
             }
-            else if($_SESSION['uprawinienia']=='0'){
-               }
         }
+      }
+  
 
 
 ?>
