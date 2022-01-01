@@ -1,7 +1,6 @@
 <?php
 include_once '../db/connect.php';
 session_start();
-print_r($_POST);
 if (!isset($_POST)){
     header("Location: modify_quiz.php");
 }
@@ -16,22 +15,22 @@ else{
                 
                 if ($ile+1==$_POST['corect']){
                     if($choiceszbaz['isCorrect']==1){
-                        echo $_POST['choice'.$ile]."<br>";
+                        
                     }
                     else{
                         $update="UPDATE choices SET isCorrect='1' WHERE questionNumber='".$_GET['quest_id']."' AND id_quiz='".$_GET['n']."' AND  choiceText='".$choiceszbaz['choiceText']."'";
                         $update2=$mysqli->query($update) or die("nie udało się");
-                        echo $_POST['choice'.$ile]."<br>";
+                        
                     }
                 }
                 else{
                     if($choiceszbaz['isCorrect']==1){
                         $update="UPDATE choices SET isCorrect='0' WHERE questionNumber='".$_GET['quest_id']."' AND id_quiz='".$_GET['n']."' AND  choiceText='".$choiceszbaz['choiceText']."'";
                         $update2=$mysqli->query($update) or die("nie udało się");
-                        echo $_POST['choice'.$ile]."<br>";
+                        
                     }
                     else{
-                        echo $_POST['choice'.$ile]."<br>";
+                        
                     }
                 }
             }
@@ -54,7 +53,7 @@ else{
             if($choiceszbaz['choiceText']==$_POST['choice'.$ile]){
                 if ($ile+1==$_POST['corect']){
                     if($choiceszbaz['isCorrect']==1){
-                        echo "poprawny<br>";
+                        
                     }
                     else{
                         $update="UPDATE choices SET isCorrect='1' WHERE questionNumber='".$_GET['quest_id']."' AND id_quiz='".$_GET['n']."' AND  choiceText='".$choiceszbaz['choiceText']."'";
@@ -67,7 +66,7 @@ else{
                         $update2=$mysqli->query($update) or die("nie udało się");
                     }
                     else{
-                        echo "poprawny<br>";
+                        
                     }
                 }
             }
@@ -82,7 +81,6 @@ else{
         }
         
         for ($i=0; $i < sizeof($_POST)-(3+$ilerekordów); $i++) { 
-            // echo $_POST['choice'.$i+$ilerekordów+1];
             if ($_POST['choice'.$i+$ilerekordów+1]!='-'){
                 if ($_POST['corect']==$i+1+$ilerekordów){
                     $insert="INSERT INTO choices VALUES('".$_GET['n']."','".$_GET['quest_id']."','1','".$_POST['choice'.$i+$ilerekordów+1]."')";
@@ -94,7 +92,6 @@ else{
                 
             }
         }
-        echo $ilerekordów;
     }
     
     header("Location: change_question.php?n=".$_GET['n']."");

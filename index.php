@@ -19,7 +19,6 @@
 
 
 <?php
-// if (!isset($_SESSION['unset']) and isset($_SESSION['user-id'])){
   if (!isset($_SESSION['user-id'])){
     echo '<a href="logowanie/logowanie.php">Zaloguj się</a>';
   }
@@ -41,16 +40,8 @@
           echo '<a href="zaplanowane/dashboard-zaplanowane.php">Zaplanowane quizy</a> ';
           echo '<a href="wyniki/wyniki.php">Wyniki quizów</a> ';
             }
-            // else if($_SESSION['uprawinienia']=='0'{}
         }
       }
-// }
-// else{
-//   unset($_SESSION['unset']);
-//   if (!isset($_SESSION['user-id'])){
-//     echo '<a href="logowanie/logowanie.php">Zaloguj się</a>';
-//   }
-// }
   
 
 
