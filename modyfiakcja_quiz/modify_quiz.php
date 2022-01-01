@@ -88,7 +88,7 @@ $rezultat=$mysqli->query($sql);
                 
                 // przycisk[1].setAttribute('name','delete');
                 // przycisk[1].value=id2;
-                location.href="delete.php?n="+id2;
+                location.href="delet_quiz.php?n="+id2;
                 }
             
         }

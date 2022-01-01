@@ -4,6 +4,7 @@ include_once '../db/connect.php';
 session_start();
 ?>
 <?php
+$id = $_SESSION['id'];
 if(isset($_POST["usu"])){
     $_SESSION["usuwanie"]+=1;
 }
@@ -23,26 +24,26 @@ if(isset($_POST["submit"])){
         
         $nrpyt = $_SESSION["operator"]+$_SESSION["count"]-$_SESSION["usuwanie"];
         $post = $_POST["pytanie"];
-        $query = "INSERT INTO questions VALUES('$nrpyt','$post','$upload')";
+        $query = "INSERT INTO questions VALUES('$id','$nrpyt','$post','$upload')";
         $run=$mysqli->query($query) or die ;
     }
     else{
         $nrpyt = $_SESSION["operator"]+$_SESSION["count"]-$_SESSION["usuwanie"];
         $post = $_POST["pytanie"];
-        $query = "INSERT INTO questions VALUES('$nrpyt','$post',NULL)";
+        $query = "INSERT INTO questions VALUES('$id','$nrpyt','$post',NULL)";
         $run=$mysqli->query($query);
     }
     
     for ($i=0; $i < 4; $i++) { //na sztywno
         if(!isset($_POST[$i+10])){
             $post = $_POST[$i];
-            $query="INSERT INTO choices VALUES('$nrpyt',0,'$post')";
+            $query="INSERT INTO choices VALUES('$id','$nrpyt',0,'$post')";
             $run=$mysqli->query($query);
         }
         else{
             $query = "INSERT INTO choices";
             $post = $_POST[$i];
-            $query="INSERT INTO choices VALUES('$nrpyt',1,'$post')";
+            $query="INSERT INTO choices VALUES('$id','$nrpyt',1,'$post')";
             $run=$mysqli->query($query);
         }
     }

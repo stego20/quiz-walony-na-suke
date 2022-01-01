@@ -8,11 +8,13 @@ $_SESSION["pytania"] = array();
 $_SESSION["odpowiedzi"] = array();
 ?>
 <?php
+echo $_SESSION['id'];
 if(isset($_POST["submit"])){
 
-    $query = "SELECT * FROM questions";
-    $run=$mysqli->query($query);
-    $count = mysqli_num_rows($run);
+    $sql3 = "SELECT * FROM questions WHERE id_quiz='".$_SESSION['id']."'";
+    $questions = $mysqli->query($sql3) or die($mysqli->error.__LINE__);
+    $count = $questions->num_rows;
+    
     
     $pytania = array();
     $file = file_get_contents($_POST["questiontxt"]);
