@@ -14,14 +14,14 @@ $query="CREATE TABLE choices (
     id_quiz int(100) NOT NULL,
     questionNumber int(11) NOT NULL,
     isCorrect int(11) NOT NULL,
-    choiceText varchar(100) NOT NULL
+    choiceText text NOT NULL
 );";
 $run = $mysqli->query($query);
 
 $query="CREATE TABLE questions(
     id_quiz int(100) NOT NULL,
     QuestionNumber int(11)NOT NULL,
-    QuestionText varchar(100)NOT NULL,
+    QuestionText textNOT NULL,
     img text
 
 );";
