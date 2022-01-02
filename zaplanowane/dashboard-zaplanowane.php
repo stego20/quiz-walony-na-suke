@@ -2,22 +2,12 @@
 include_once '../db/connect.php';
 include_once '../includes/header.php';
 session_start();
-if (isset($_POST['submit'])){
-    $wyszukiwanie=$_POST['wyszukiwarka'];
-    $sql="SELECT * FROM kolejka  ORDER BY id_sesji '";
-    unset($_POST);
-    $search=array();
-    $index=0;
-    $rezultat=$mysqli->query($sql);
-    while($row=$rezultat->fetch_assoc()){
-        $search[$row['id']]='szukane';
-        $index++;
-    }
 
-}else{
-    $sql="SELECT * FROM kolejka ORDER BY id_sesji ";
+    $sql="SELECT * FROM `kolejka` 
+    INNER JOIN quizy on quizy.id= kolejka.id_quiz
+    WHERE quizy.id_n='".$_SESSION['user-id']."' ORDER BY id_sesji DESC";
     
-}
+
 $rezultat=$mysqli->query($sql);
 
 ?>
@@ -125,10 +115,6 @@ $rezultat=$mysqli->query($sql);
     </script>
     
     <table>
-        <form method="post">
-        <input name="wyszukiwarka" type="text">
-        <input type="submit" name='submit'value='Szukaj'>
-        </form>
         <tr>
             <th class='id'>id</th>
             <th class='Login'>Nazwa Quizu</th>

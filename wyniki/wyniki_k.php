@@ -83,11 +83,11 @@ $(document).ready(function(){
             while($row=$rezultat->fetch_assoc()){
 
                 $zle=unserialize($row['niepoprawne']);//zaciaganie niepoprawnych
-
+                
                 $procent=((int)$row['poprawne']/(int)$row['total_question'])*100;
                 
                 echo "<h1 class='flip'>".$row['imie_i_nazwisko']." <span style='color:lime;'>Correct: ".$row['poprawne']."</span> <span style='color:red;'>InCorrect: ".sizeof($zle)."</span> Percent: ".round($procent,2)."% Start: ".$row['data_start']." End: ".$row['data_koniec']." <i class='fas fa-angle-down'></i><h1>";
-                
+                if(sizeof($zle)==0){continue;}
                 
                 $select="SELECT * FROM kolejka WHERE id_sesji='".$row['id_sesji']."'";
                 $rezultat2=$mysqli->query($select);

@@ -29,7 +29,7 @@
     $_SESSION['uprawinienia']=$wiersz['admin'];
     $_SESSION['klasa']=$wiersz['klasa'];
     $_SESSION['grupa']=$wiersz['grupa'];
-    echo '<a href="user_control/user_options.php">Witaj: '.$_SESSION['user'].'</a> ';
+    echo '<a href="user_control/user_options.php">Moje konto</a> ';
       if(isset($_SESSION['uprawinienia'])){
         if($_SESSION['uprawinienia']=='1'){
           echo '<a href="admin/paneladmin.php">Zarządzaj Użytkownikami</a> ';
@@ -41,9 +41,6 @@
             }
         }
       }
-  
-
-
 ?>
 
 <div class='grid'><form method='post' action='quiz_menu.php'>
