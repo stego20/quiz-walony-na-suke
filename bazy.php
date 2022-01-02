@@ -21,7 +21,7 @@ $run = $mysqli->query($query);
 $query="CREATE TABLE questions(
     id_quiz int(100) NOT NULL,
     QuestionNumber int(11)NOT NULL,
-    QuestionText textNOT NULL,
+    QuestionText text NOT NULL,
     img text
 
 );";
