@@ -9,7 +9,7 @@
 </head>
 <body>
     <form method="post" action='process.php'>
-        Nazwa quizu: <input type="text" name="name" id=""><br>
+        Nazwa quizu: <input type="text" name="name" id="" required="required"><br>
         <input type="submit" value="Create">
     </form></div>
 </form>
