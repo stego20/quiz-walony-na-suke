@@ -20,6 +20,21 @@
 <?php
   if (!isset($_SESSION['user-id'])){
     echo '<a href="logowanie/logowanie.php">Zaloguj się</a>';
+    if (isset($_SESSION['klasa'])){
+      unset($_SESSION['klasa']);
+    }
+    if (isset($_SESSION['user'])){
+      unset($_SESSION['user']);
+    }
+    if (isset($_SESSION['grupa'])){
+      unset($_SESSION['grupa']);
+    }
+    if (isset($_SESSION['uprawinienia'])){
+      unset($_SESSION['uprawinienia']);
+    }
+
+    
+    print_r($_SESSION);
   }
   else {
     $getinfo="SELECT * FROM konta WHERE id='".$_SESSION['user-id']."'";
@@ -50,9 +65,6 @@ if (isset($_SESSION['grupa']) && isset($_SESSION['klasa'])){
   $aktualny = strtotime($date);
   $query="SELECT * FROM kolejka WHERE klasa='".$_SESSION['klasa']."' AND grupa='3' OR grupa LIKE'".$_SESSION['grupa']."'";
   $results= $mysqli->query($query) or die($mysqli_error.__LINE__);
-  $wiersz2= $results->fetch_assoc();
-
-  
   if($results->num_rows!=0){
     while($row=$results->fetch_assoc()){
       $query2="SELECT * FROM `wyniki` WHERE `imie_i_nazwisko`='".$_SESSION['user']."' AND `id_sesji`='".$row['id_sesji']."'";
@@ -63,7 +75,6 @@ if (isset($_SESSION['grupa']) && isset($_SESSION['klasa'])){
         if($start<$aktualny && $aktualny<$koniec){
           echo "<button type=submit name='quiz_id' value='".$row['id_sesji']."'>".$row['name']."</button>";
         }else{
-          
         }
       }
   }

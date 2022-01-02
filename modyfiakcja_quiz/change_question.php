@@ -177,7 +177,7 @@ $rezultat=$mysqli->query($sql);
                 <td  class='Modyfikacja' ><div ><button ' type='submit'  style='background-color: lime; border: none; '><i class='fas fa-plus'></i></button></form></tr>";
 
         ?>
-        <a type='submit' value='zapisz' href="../index.php">back to menu<a>
+        <a type='submit' value='zapisz' href="modify_quiz.php">back to menu<a>
     
     </table>
 </body>
