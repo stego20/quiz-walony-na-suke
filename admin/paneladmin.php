@@ -2,6 +2,9 @@
 include_once '../db/connect.php';
 include_once '../includes/header.php';
 session_start();
+if($_SESSION['uprawinienia']!=1){
+    header("Location: ../");
+}
 if (isset($_POST['submit'])){
     $wyszukiwanie=$_POST['wyszukiwarka'];
     $sql="SELECT * FROM konta WHERE `login` like '%$wyszukiwanie%' or `klasa` like '%$wyszukiwanie%' or `grupa` like '%$wyszukiwanie%' or `imie` like '%$wyszukiwanie%' or `nazwisko` like '%$wyszukiwanie%'";

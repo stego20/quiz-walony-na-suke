@@ -19,7 +19,7 @@ if(isset($_POST['submit'])){
     $choice[4]=$_POST['choice4'];
     $choice[5]=$_POST['choice5'];
 
-    $sql="INSERT INTO `questions`(`id_quiz`, `QuestionNumber`, `QuestionText`, `idimg`) VALUES('".$_SESSION['id']."','".$questionNumber."','".$questiontext."',null)";
+    $sql="INSERT INTO `questions`(`id_quiz`, `QuestionNumber`, `QuestionText`, `img`) VALUES('".$_SESSION['id']."','".$questionNumber."','".$questiontext."',null)";
 
     $insertrow=$mysqli->query($sql) or die($mysqli->error.__LINE__);
 
