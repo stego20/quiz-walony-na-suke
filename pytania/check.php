@@ -106,4 +106,4 @@ else{
     </div>
     </main>
 </div>
-<?php include_once '..\includes\footer.php'; ?>
+<?php include_once '../includes/footer.php'; ?>
