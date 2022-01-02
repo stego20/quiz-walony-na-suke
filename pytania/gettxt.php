@@ -8,7 +8,6 @@ $_SESSION["pytania"] = array();
 $_SESSION["odpowiedzi"] = array();
 ?>
 <?php
-echo $_SESSION['id'];
 if(isset($_POST["submit"])){
 
     $sql3 = "SELECT * FROM questions WHERE id_quiz='".$_SESSION['id']."'";
@@ -61,4 +60,4 @@ if(isset($_POST["submit"])){
         <a href="dashboard.php" class="btn btn-primary">Back</a>
     </div>
 </mian>
-<?php include_once '..\includes\footer.php'; ?>
+<?php include_once '../includes/footer.php'; ?>
