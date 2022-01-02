@@ -27,12 +27,12 @@ if ($rezultat->num_rows==1){
     $rezultat2=$mysqli->query($update) or die ("nie");
     
     if($rezultat2){
-        // header("Location: dashboard-zaplanowane.php");
+        header("Location: dashboard-zaplanowane.php");
     }
     
 }
 else{
-    // header("Location: dashboard-zaplanowane.php");
+    header("Location: dashboard-zaplanowane.php");
 }
 
 

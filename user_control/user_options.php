@@ -60,11 +60,15 @@ while($row=$selectscoree->fetch_assoc()){
     <li class="nav-item" role="presentation">
         <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Ustawienia Konta</button>
     </li>
+    <li class='nav-item'>
+        <a href="../" class='nav-link'>back to menu</a>
+    </li>
     <li class="nav-item" >
           <a class="navbar-brand" href="logout.php">
     <img src="img/logout.png" alt="" width="40" height="40">
     </a>
     </li>
+    
   
     <!-- <li class="nav-item" role="presentation">
         <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Inne Opcje?</button>
