@@ -14,7 +14,7 @@ session_start();
 </head>
 <body>
     <form method="post" action='process_set.php'>
-        Wybierz nazwe quizu: <input list='name-quiz' name="name" autocomplete="off" required="required">
+        Wybierz nazwe quizu: <input list='name-quiz' name="name" autocomplete="off">
   <datalist id="name-quiz">
       <?php
     $sql="SELECT `name` FROM quizy WHERE id_n='".$_SESSION['user-id']."'";
@@ -32,9 +32,9 @@ session_start();
                     echo "<br>";
                 }
             ?>
-        Data-rozpoczęczia:<input type="datetime-local" name="datar" required="required"><br>
-        Data-zakończenia:<input type="datetime-local" name="datak" required="required"><br>
-        Klasa:<input type="text" name='klasa' maxlength="2" required="required"><?php
+        Data-rozpoczęczia:<input type="datetime-local" name="datar"><br>
+        Data-zakończenia:<input type="datetime-local" name="datak"><br>
+        Klasa:<input type="text" name='klasa' maxlength="2"><?php
                 if(isset($_SESSION['blad_set_klasa'])){
                     echo '<br><span style="color:red;">'.$_SESSION['blad_set_klasa']."</span><br>";
                     unset($_SESSION['blad_set_klasa']);

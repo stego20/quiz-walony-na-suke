@@ -9,7 +9,7 @@ if (isset($_POST)){
             $id=$rezultat->fetch_assoc();
             $total=(int)$id['id']+1;
             echo 'tu';
-            $insert="INSERT INTO quizy VALUES('".$total."','".$name."','".$_SESSION['user-id']."')";
+            $insert="INSERT INTO quizy VALUES('null','".$name."','".$_SESSION['user-id']."')";
             if($rezultat=$mysqli->query($insert) or die ($mysqli_error.__LINE__)){
                 $_SESSION['id']=$total;
                 header("Location: ../pytania/dashboard.php");

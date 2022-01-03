@@ -73,17 +73,17 @@ $(document).ready(function(){
         $(this).next().find(".panel").slideToggle("slow");
     });
 });
-	</script>
+    </script>
 
     <ul>
 
         
         <?php
-        $ile=1;
+        $ile=0;
             while($row=$rezultat->fetch_assoc()){
 
                 $zle=unserialize($row['niepoprawne']);//zaciaganie niepoprawnych
-                
+                // print_r($zle);
                 $procent=((int)$row['poprawne']/(int)$row['total_question'])*100;
                 
                 echo "<h1 class='flip'>".$row['imie_i_nazwisko']." <span style='color:lime;'>Correct: ".$row['poprawne']."</span> <span style='color:red;'>InCorrect: ".sizeof($zle)."</span> Percent: ".round($procent,2)."% Start: ".$row['data_start']." End: ".$row['data_koniec']." <i class='fas fa-angle-down'></i><h1>";
@@ -94,18 +94,19 @@ $(document).ready(function(){
                 $wiersz=$rezultat2->fetch_assoc();
 
 
-                $selectquest="SELECT * FROM questions WHERE id_quiz='".$wiersz['id_quiz']."' AND QuestionNumber='".$zle[0][0]."'";
+                
+                for ($i=0; $i < sizeof($zle); $i++) { 
+                $selectquest="SELECT * FROM questions WHERE id_quiz='".$wiersz['id_quiz']."' AND QuestionNumber='".$zle[$i][0]."'";
+                // echo ($selectquest);
                 $quest=$mysqli->query($selectquest);
                 $questtext=$quest->fetch_assoc();
-                $ile=0;
-                for ($i=0; $i < sizeof($zle); $i++) { 
                     echo "<div class='panel'><p>".$questtext['QuestionText']."
                             <ul>";
                         $selectchoice="SELECT * FROM choices WHERE id_quiz='".$wiersz['id_quiz']."' AND questionNumber='".$zle[$i][0]."'";
                         $choices=$mysqli->query($selectchoice);
                         while($choice=$choices->fetch_assoc()){
                             // echo gettype($zle[0][1])." || ".gettype($choice['choiceText']);
-                            if ($zle[$i][1]==$choice['choiceText']){
+                            if ($zle[$i][1]==$choice['choiceText'] ){
                                 echo"<li style='background-color:#EE0000; '><input type='radio' checked='true'  >".$choice['choiceText']."</li>";
                             }
                             elseif($choice['isCorrect']==1){
@@ -118,8 +119,8 @@ $(document).ready(function(){
                         }
                             echo"</ul></p>
                         </div>";
-                        $ile++;
-                }
+                       
+                } $ile++;
                     
             }
     

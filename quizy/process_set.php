@@ -5,6 +5,13 @@ if (isset($_POST)){
     $name=$_POST['name'];
     $datar = date('Y-m-d H:i:s ', strtotime($_POST['datar']));
     $datak = date('Y-m-d H:i:s ', strtotime($_POST['datak']));
+
+    if ($datar>$datak){
+        $pamiec=$datak;
+        $datak=$datar;
+        $datar=$pamiec;
+
+    }
     $klasa=$_POST['klasa'];
     
     if (isset($_POST['1']) && isset($_POST['2'])){
@@ -16,39 +23,35 @@ if (isset($_POST)){
     else if (isset($_POST['2'])){
         $grupa=2;
     }
-    else if (!isset($_POST['1']) and !isset($_POST['2'])) {
+    else {
         $_SESSION['blad_set_grupa']='Nie została zanaczona żadna grupa';
         header("Location: set_quiz.php");
     }
-    else if ($name==""){
+     if ($name==""){
         $_SESSION['blad_set_nazwa']='Nie został wybrany żaden quiz';
         header("Location: set_quiz.php");
     }
-    else if ($klasa==''){
+     if ($klasa==''){
         $_SESSION['blad_set_klasa']='Nie został wybrana żadna klasa';
         header("Location: set_quiz.php");
     }
-    if ($name!= '' && $klasa!= '' ){
+    if ($datak<gmdate('Y-m-d H:i:s ',time()+3600)){
+        $_SESSION['blad_set_data']='wybrałęś date ktra już mineła';
+    };
+    if ($name!= '' && $klasa!= '' && $grupa!=0 && $datak>gmdate('Y-m-d H:i:s ',time()+3600)){
             $search="SELECT id FROM quizy WHERE `name`='".$name."' AND `id_n`='".$_SESSION['user-id']."'";
             $id_quiz=$mysqli->query($search);
             $id_quiz=$id_quiz->fetch_assoc();
-            $sql="SELECT id_sesji FROM kolejka order by id_sesji DESC limit 1";
-            $rezultat=$mysqli->query($sql);
-            echo 'tu';
-            $ilerekordow=$rezultat->num_rows;
-            echo $ilerekordow;
-            if ($ilerekordow==0){
-                $total=0;
-            }
-            $id=$rezultat->fetch_assoc();
-            $total=(int)$id['id_sesji']+1;
-            $insert="INSERT INTO kolejka VALUES('".$total."','".$name."','".$id_quiz['id']."','".$datar."','".$datak."','".$klasa."','".$grupa."')";
+            $insert="INSERT INTO kolejka VALUES('null','".$name."','".$id_quiz['id']."','".$datar."','".$datak."','".$klasa."','".$grupa."')";
             if($rezultat=$mysqli->query($insert) or die ($mysqli_error.__LINE__)){
                 
                 header("Location: ../");
             };
 
 
+        }
+        else{
+            header("Location: set_quiz.php");
         }
 
     }

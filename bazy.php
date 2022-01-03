@@ -14,21 +14,21 @@ $query="CREATE TABLE choices (
     id_quiz int(100) NOT NULL,
     questionNumber int(11) NOT NULL,
     isCorrect int(11) NOT NULL,
-    choiceText varchar(100) NOT NULL
+    choiceText text NOT NULL
 );";
 $run = $mysqli->query($query);
 
 $query="CREATE TABLE questions(
     id_quiz int(100) NOT NULL,
     QuestionNumber int(11)NOT NULL,
-    QuestionText varchar(100)NOT NULL,
+    QuestionText text NOT NULL,
     img text
 
 );";
 $run = $mysqli->query($query);
 
 $query="CREATE TABLE konta(    
-    `id` int(11) NOT NULL,
+    `id` int(11) PRIMARY KEY AUTO_INCREMENT,
     `login` text NOT NULL,
     `haslo` text NOT NULL,
     `klasa` varchar(2) NOT NULL,
@@ -43,7 +43,7 @@ $run = $mysqli->query($query);
 $run = $mysqli->query($query);
 
 $query = "CREATE TABLE quizy(
-    id int(100) NOT NULL,
+    id int(100) PRIMARY KEY AUTO_INCREMENT,
     `name` varchar(200) NOT NULL,
     id_n int(100) NOT NULL
 
@@ -51,7 +51,7 @@ $query = "CREATE TABLE quizy(
 $run = $mysqli->query($query);
 
 $query = "CREATE TABLE kolejka(
-    id_sesji int(100) NOT NULL,
+    id_sesji int(100) PRIMARY KEY AUTO_INCREMENT,
     `name` varchar(200) NOT NULL,
     id_quiz int(100) NOT NULL,
     data_start datetime NOT NULL,
