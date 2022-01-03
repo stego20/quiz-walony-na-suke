@@ -33,8 +33,6 @@
       unset($_SESSION['uprawinienia']);
     }
 
-    
-    print_r($_SESSION);
   }
   else {
     $getinfo="SELECT * FROM konta WHERE id='".$_SESSION['user-id']."'";

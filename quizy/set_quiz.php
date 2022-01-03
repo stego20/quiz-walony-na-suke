@@ -42,7 +42,7 @@ session_start();
                     echo "<br>";
                 }
             ?>
-        grupa: <input type="checkbox" name="1" value="1">1
+        grupa: <input type="checkbox" name="1" value="1" >1
             <input type="checkbox" name="2" value="2">2 
             <?php
                 if(isset($_SESSION['blad_set_grupa'])){
