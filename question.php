@@ -107,7 +107,7 @@ $_SESSION["wyb"]=$choices;
           sciagal++;
             
         button.value=sciagal;
-          // alert("Jebać kapusi");
+        //   alert("Jebać kapusi");
           controller = 0;            
       }
     });

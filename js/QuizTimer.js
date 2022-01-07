@@ -10,7 +10,7 @@ function QuizTimer(left, time)
         time.textContent = minutes + ":" + seconds;
         if (--timer < 0) 
         {
-            location.href = 'final.php';
+            location.href = 'save_score.php';
         }
     }, 1000);
 }

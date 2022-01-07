@@ -37,8 +37,8 @@ unset($_POST);
 <body>
     <form action="procesreg.php" method="post">
         <h1>Rejestracja</h1>
-        <p>Login: <input class="input" type="text" name="login"></p>
-        <p>Haslo: <input class="input" type="text" name="haslo"></p>
+        <p>Login: <input class="input" type="text" name="login" maxlength="200"></p>
+        <p>Haslo: <input class="input" type="text" name="haslo" minlength='5'></p>
         <p>Klasa: <input class="input" list='name-quiz' name="klasa" autocomplete="off" required="required"></p>
  
         <p>Grupa: <input class="input" type="number" min='1' max='2' value='1'name="grupa"></p>
